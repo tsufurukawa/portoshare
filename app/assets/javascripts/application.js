@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require bootstrap-sprockets
+//= require jquery.scrollTo.js
+//= require jquery.localScroll.js
 //= require_tree .

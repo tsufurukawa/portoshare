@@ -1,0 +1,57 @@
+.front-page
+  %nav.clearfix.navbar-fixed-top#front-nav
+    %ul(class="nav nav-tabs pull-right" role="tablist")
+      %li(class="active")
+        = link_to "Home", "#cover"
+      %li
+        = link_to "Description", "#description"
+      %li
+        = link_to "Feature", "#feature"
+
+  .container#cover
+    .row
+      .col-sm-5
+        .text-container
+          %h2 Create And Share Your Portfolio  
+          %p Some text will go here!!
+      .col-sm-7
+        .img-container
+          = image_tag "/tmp/imac_clipart.png"
+
+  .outer
+    .container#description
+      .row
+        .col-sm-3.col-sm-offset-1.col-xs-3
+          .img-container
+            = image_tag "/tmp/thinking_boy_clipart.png"
+        .col-sm-6.col-xs-9
+          .text-container
+            %h2 Description
+            %p Ever have trouble finding a way to promote your newly designed website? ... Go on with the description here. Lorem ipsum dolor sit amet, iaculis condimentum vitae malesuada mi nostra, commodo pede sem justo at, dui sed primis nunc faucibus. Nunc condimentum sit sed arcu tristique tincidunt.
+
+  .container#feature
+    .row
+      %h1 Feature
+      .col-sm-4.text-center.clearfix
+        .col-xs-9.col-sm-12.pull-right
+          %h4 Sign Up
+          %p This is a random string of text that is used as a placeholder. Note: this will be modified later on.
+        .col-xs-3.col-sm-12.pull-left
+          %img(src="http://www.clker.com/cliparts/b/a/9/1/11971232541784551369dtjohnnymonkey_Stopwatch_(no_shading).svg.med.png")
+      .col-sm-4.text-center.clearfix
+        .col-xs-9.col-sm-12.pull-right
+          %h4 Upload and Customize
+          %p This is a random string of text that is used as a placeholder. Note: this will be modified later on.
+        .col-xs-3.col-sm-12.pull-left
+          %img(src="http://www.clker.com/cliparts/b/7/8/5/13663786061209913159upload.svg.med.png")
+      .col-sm-4.text-center.clearfix
+        .col-xs-9.col-sm-12.pull-right
+          %h4 Share
+          %p This is a random string of text that is used as a placeholder. Note: this will be modified later on.
+        .col-xs-3.col-sm-12.pull-left
+          %img(src="http://www.clker.com/cliparts/9/5/f/7/11949857701951238442p2p_nicu_buculei_01.svg.med.png")
+
+  %footer
+    Copyright &copy 2014 PortoShare. All rights reserved.
+
+

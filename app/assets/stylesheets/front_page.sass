@@ -1,0 +1,66 @@
+@mixin vertical-align
+  position: relative
+  top: 50%
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+
+.front-page
+  background-image: url("/tmp/background.png")
+  padding-top: 3%
+
+  nav
+    margin-bottom: 2%
+
+#cover .row
+  .img-container
+    max-width: 500px
+    margin-left: auto
+    margin-right: auto
+
+    img
+      display: block
+      margin-left: auto
+      margin-right: auto
+      max-width: 100%
+      max-height: 100%
+
+.outer
+  background: #7E7E7E
+  padding: 3% 0
+  margin-top: 5%
+
+#description .row
+  img
+    max-width: 100%
+    max-height: 100%
+
+#feature .row
+  margin-top: 2%
+
+  img
+    width: auto
+    height: 140px
+
+footer
+  height: 100px
+  border: 2px solid black
+  margin-top: 3%
+
+@media only screen and (max-width: 768px)
+  #description .row
+    .col-xs-3
+      float: right
+    .col-xs-9
+      float: left
+    img
+      // min-height: 200px
+
+  #feature .row
+    .col-sm-4
+      text-align: left
+      margin-bottom: 4%
+    img
+      height: auto
+      width: 100%
+      max-width: 100px
