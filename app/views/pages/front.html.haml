@@ -1,5 +1,5 @@
 .front-page
-  %nav.clearfix.navbar-fixed-top#front-nav
+  %nav.clearfix.navbar-fixed-top#front-nav.hidden-xs
     %ul(class="nav nav-tabs pull-right" role="tablist")
       %li(class="active")
         = link_to "Home", "#cover"
@@ -19,7 +19,8 @@
           = image_tag "/tmp/imac_clipart.png"
 
   .outer
-    .container#description
+    #description
+    .container
       .row
         .col-sm-3.col-sm-offset-1.col-xs-3
           .img-container

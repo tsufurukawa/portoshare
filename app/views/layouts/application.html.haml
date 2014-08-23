@@ -4,14 +4,15 @@
     %title PortoShare - portfolio sharing to showcase your web apps
     %meta(charset="UTF-8")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %link(href="http://fonts.googleapis.com/css?family=Lobster" type="text/css")
     = csrf_meta_tag
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = yield :head
 
   %body(data-spy="scroll" data-target="#front-nav")
-    %header
+    %header.clearfix
       = render 'shared/header'
-    %section
+    %section.clearfix
       = render 'shared/messages'
       = yield
