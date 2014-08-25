@@ -1,75 +1,73 @@
-@mixin vertical-align
-  position: relative
-  top: 50%
-  -webkit-transform: translateY(-50%)
-  -ms-transform: translateY(-50%)
-  transform: translateY(-50%)
+// @mixin vertical-align
+//   position: relative
+//   top: 50%
+//   -webkit-transform: translateY(-50%)
+//   -ms-transform: translateY(-50%)
+//   transform: translateY(-50%)
 
 .front-page
-  background-image: url("/tmp/background.png")
-  padding-top: 3%
+  #front-nav
+    margin-top: 46px
+    font-size: 1.2em
+    font-family: 'Lobster', cursive
+    font-weight: bold
 
-#front-nav
-  margin-bottom: 2%
-  margin-top: 46px
-  font-size: 1.2em
-  font-family: 'Lobster', cursive
-  font-weight: bold
+  #cover
+    position: relative
+    top: -100px  
 
-#cover .row
-  margin-top: 100px
-
-  .img-container
-    max-width: 500px
-    margin-left: auto
-    margin-right: auto
-
-    img
-      display: block
+  #cover + .container
+    .img-container
+      max-width: 450px
       margin-left: auto
       margin-right: auto
+
+      img
+        display: block
+        margin-left: auto
+        margin-right: auto
+        max-width: 100%
+        max-height: 100%
+
+  .outer
+    background: #7E7E7E
+    padding: 5% 0
+    margin-top: 5%
+
+    #description
+      position: relative
+      top: -140px
+
+  #description + .container
+    img
       max-width: 100%
       max-height: 100%
 
-.outer
-  background: #7E7E7E
-  padding: 5% 0
-  margin-top: 5%
+  #feature .row
+    margin-top: 2%
 
-  #description
-    position: relative
-    top: -140px
+    img
+      width: auto
+      height: 140px
 
-
-#description + .container
-  img
-    max-width: 100%
-    max-height: 100%
-
-#feature .row
-  margin-top: 2%
-
-  img
-    width: auto
-    height: 140px
-
-footer
-  height: 100px
-  border: 2px solid black
-  margin-top: 15px
+  footer
+    height: 100px
+    border: 2px solid black
+    margin-top: 15px
 
 @media only screen and (max-width: 768px)
-  #description + .container
-    .col-xs-3
-      float: right
-    .col-xs-9
-      float: left
+  .front-page
+    #description + .container
+      .col-xs-3
+        float: right
+      .col-xs-9
+        float: left
 
-  #feature .row
-    .col-sm-4
-      text-align: left
-      margin-bottom: 4%
-    img
-      height: auto
-      width: 100%
-      max-width: 100px
+    #feature .row
+      .col-sm-4
+        text-align: left
+        margin-bottom: 4%
+      img
+        height: auto
+        width: 100%
+        max-width: 100px

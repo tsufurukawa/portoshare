@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require jquery.scrollTo.js
-//= require jquery.localScroll.js
+//= require jquery.scrollTo.min.js
+//= require jquery.localScroll.min.js
+//= require jquery.dotdotdot.min.js
 //= require_tree .
