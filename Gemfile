@@ -11,6 +11,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
+gem 'fabrication'
+gem 'faker'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -23,6 +25,7 @@ end
 group :test, :developent do
   gem 'pry'
   gem 'rspec-rails'
+
 end
 
 group :production do

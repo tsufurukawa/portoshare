@@ -1,0 +1,9 @@
+.project-index.container
+  - @projects.each do |project|
+    %li
+      .thumbnail
+        = link_to "", nil do
+          = image_tag "http://lorempixel.com/200/200" # TODO: change to project.image.url
+      .caption
+        %h3= project.title
+        %p= project.subtitle
