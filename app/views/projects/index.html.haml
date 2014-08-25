@@ -1,7 +1,7 @@
 .project-index.container
   .row
     - @projects.each do |project|
-      %li.col-sm-4
+      %li.col-sm-6.col-md-4
         .thumbnail
           = link_to "", nil do
             = image_tag "http://lorempixel.com/500/400" # TODO: change to project.image.url
