@@ -1,4 +1,6 @@
 %nav(class="navbar navbar-inverse navbar-fixed-top" id="main-nav" role="navigation")
+  = link_to "Sign Up For An Account", nil, class: "btn btn-primary"
+
   .container
     .navbar-header
       %button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-toggle")
@@ -10,4 +12,3 @@
     .collapse.navbar-collapse#main-nav-toggle
       %ul.nav.navbar-nav
         %li= link_to "About", ""
-        %li= link_to "something", ""
