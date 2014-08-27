@@ -7,7 +7,9 @@
       margin-left: auto
       margin-right: auto
       width: 100%
-
+      border: 20px solid brown
+      border-image: url("/tmp/dark_wood_frame.jpeg") 20
+      
     .bulletin-board-content
       position: absolute
       top: 0
@@ -73,8 +75,12 @@
 
 @media only screen and (max-width: 768px)
   .project-show
+    .bulletin-board-wrapper > img
+      border-width: 10px !important
+      width: 90% !important
+
     .bulletin-board-content
-      padding-top: 12% !important
+      padding: 12% !important
 
     .project-basic-info
       img
