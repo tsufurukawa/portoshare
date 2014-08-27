@@ -13,6 +13,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'fabrication'
 gem 'faker'
+gem 'bcrypt'
+gem 'font-awesome-sass'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
