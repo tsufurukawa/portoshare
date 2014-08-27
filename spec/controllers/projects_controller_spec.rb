@@ -9,4 +9,12 @@ describe ProjectsController do
       expect(assigns(:projects)).to eq([project1, project2])
     end
   end
+
+  describe "GET show" do
+    it "sets the @project variable" do
+      project = Fabricate(:project)
+      get :show, id: project.id
+      expect(assigns(:project)).to eq(project)
+    end
+  end
 end

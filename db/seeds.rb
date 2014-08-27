@@ -6,6 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+3.times do
+  Fabricate(:user, password: 'password')
+end
+
 10.times do
   Fabricate(:project)
+end
+
+Project.all.each do |project|
+  project.user = User.all.sample
+  project.save
 end
