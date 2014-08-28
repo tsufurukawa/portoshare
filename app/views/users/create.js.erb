@@ -3,4 +3,5 @@
 <% else %> 
   $("#sign-up-modal .modal-body").html("<%= escape_javascript(render 'shared/form', user: @user, modal: true) %>");
   $(".sign-up .container").html("<%= escape_javascript(render 'shared/form', user: @user, modal: false) %>");
+  $("#sign-up-modal .modal-content").effect("shake");
 <% end %>
