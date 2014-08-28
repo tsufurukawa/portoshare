@@ -1,0 +1,6 @@
+<% if @user.valid? %>
+  $(window.location.replace("<%= escape_javascript(projects_path) %>"));
+<% else %> 
+  $("#sign-up-modal .modal-body").html("<%= escape_javascript(render 'shared/form', user: @user, modal: true) %>");
+  $(".sign-up .container").html("<%= escape_javascript(render 'shared/form', user: @user, modal: false) %>");
+<% end %>
