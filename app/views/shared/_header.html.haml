@@ -1,5 +1,7 @@
 %nav(class="navbar navbar-inverse navbar-fixed-top" id="main-nav" role="navigation")
-  = link_to "Sign Up For An Account", nil, class: "btn btn-primary"
+  .login-signup-button-container
+    %button.btn.btn-primary Log in
+    %button.btn.btn-primary{"data-target" => "#sign-up-modal", "data-toggle" => "modal"} Sign up
 
   .container
     .navbar-header

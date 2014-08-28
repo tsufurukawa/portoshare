@@ -16,3 +16,19 @@
     %section.clearfix
       = render 'shared/messages'
       = yield
+
+      #sign-up-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "sign-up-modal", :role => "dialog", :tabindex => "-1"}
+        .modal-dialog.modal-sm
+          .modal-content.col-xs-10.col-xs-offset-1.col-sm-12.col-sm-offset-0
+            .modal-header
+              %button.close{"data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"} ×
+                %span.sr-only Close
+              %h4#sign-up-modal.modal-title Sign Up Form
+            .modal-body
+              = bootstrap_form_for(User.new) do |f|
+                = f.text_field :name
+                = f.email_field :email
+                = f.password_field :password, help: "Must be at least 6 characters long"
+                = f.submit "Sign Up", class: "btn btn-primary"
+                %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
