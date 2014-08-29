@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  respond_to :js, :html
-
   def new
     @user = User.new
   end
