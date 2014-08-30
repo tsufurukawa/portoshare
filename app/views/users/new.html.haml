@@ -1,3 +1,4 @@
-.sign-up
-  .container
-    = render "shared/form", user: @user ||= User.new, modal: false
+#sign-up
+  .container.jumbotron
+    %h4 Sign Up Form
+    = render "shared/signup_form", user: @user ||= User.new, modal: false

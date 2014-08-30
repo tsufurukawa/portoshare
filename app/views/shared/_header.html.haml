@@ -14,7 +14,7 @@
 
 #login-signup-button-container
   - unless logged_in?
-    %button.btn.btn-primary Log in
+    %button.btn.btn-primary{"data-target" => "#log-in-modal", "data-toggle" => "modal"} Log in
     %button.btn.btn-primary{"data-target" => "#sign-up-modal", "data-toggle" => "modal"} Sign up
   - else
     .dropdown

@@ -1,0 +1,39 @@
+// Using Extend
+.header
+  font-family: "Lobster", cursive
+  font-weight: bold
+  text-align: center
+
+// General styling for signup and login forms
+#sign-up-modal, #log-in-modal
+  .modal-dialog
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 300px
+    margin-top: 100px
+
+  .modal-content
+    background-image: url("/tmp/green_dust_scratch.png")
+
+  .modal-body
+    background-image: url("/tmp/background.png")
+
+  .modal-header
+    border-bottom: 1px solid black
+
+  h4
+    @extend .header
+    font-size: 1.6em
+
+#sign-up, #log-in
+  .container
+    width: 300px
+    padding: 2.0em
+
+  h4
+    @extend .header
+    font-size: 1.8em
+    color: #357ebd
+    text-decoration: underline
+    margin-bottom: 0.7em
