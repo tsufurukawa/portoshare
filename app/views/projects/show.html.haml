@@ -1,9 +1,9 @@
-.project-show.container
-  .bulletin-board-wrapper
-    = image_tag "/tmp/retina_wood.png"
+#project-show.container
+  #bulletin-board-wrapper
+    = image_tag "/tmp/retina_wood.png", id: "board-background"
 
-    .bulletin-board-content
-      .title-container
+    #bulletin-board-content
+      #title-container
         %h1= @project.title
         %h4= @project.subtitle
         %h6 
@@ -22,34 +22,34 @@
         %span 
           = link_to "yes"
 
-      .project-basic-info.row
+      #project-basic-info.row
         .col-sm-6
-          = image_tag "http://lorempixel.com/600/400"
+          = image_tag "http://lorempixel.com/600/400", id: "project-image"
         .col-sm-6
           %h3 Project Description
           %p= @project.main_description
 
-    .project-more-info
+    #project-more-info
       .wrapper
-        = image_tag "/tmp/postit-yellow.png"
+        = image_tag "/tmp/postit-yellow.png", class: "postit"
         .text-container
           %h4 User Added Information
           %p= Faker::Lorem.sentences(10).join(' ')
 
       .wrapper
-        = image_tag "/tmp/postit-orange.png"
+        = image_tag "/tmp/postit-orange.png", class: "postit"
         .text-container
           %h4 More User Added Information
           %p= Faker::Lorem.sentences(10).join(' ')
 
       .wrapper
-        = image_tag "/tmp/postit-blue.png"
+        = image_tag "/tmp/postit-blue.png", class: "postit"
         .text-container
           %h4 More User Added Information
           %p= Faker::Lorem.sentences(10).join(' ')
 
       .wrapper
-        = image_tag "/tmp/postit-blue.png"
+        = image_tag "/tmp/postit-blue.png", class: "postit"
         .text-container
           %h4 More User Added Information
           %p= Faker::Lorem.sentences(10).join(' ')

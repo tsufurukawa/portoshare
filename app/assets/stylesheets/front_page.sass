@@ -1,16 +1,17 @@
 // @mixin vertical-align
 //   position: relative
 //   top: 50%
-//   -webkit-transform: translateY(-50%)
+//   -jwebkit-transform: translateY(-50%)
 //   -ms-transform: translateY(-50%)
 //   transform: translateY(-50%)
 
-.front-page
+#front-page
   #front-nav
-    margin-top: 3.2em
+    margin-top: 3.13em
     font-size: 1.2em
     font-family: 'Lobster', cursive
     font-weight: bold
+    z-index: 2
 
   #cover
     position: relative
@@ -22,33 +23,29 @@
       margin-left: auto
       margin-right: auto
 
-      img
-        display: block
-        margin-left: auto
-        margin-right: auto
-        max-width: 100%
-        max-height: 100%
+  #imac-clipart
+    display: block
+    margin-left: auto
+    margin-right: auto
+    max-width: 100%
+    max-height: 100%
 
   .outer
     background: #7E7E7E
     padding: 5% 0
     margin-top: 5%
 
-    #description
-      position: relative
-      top: -140px
+  #description
+    position: relative
+    top: -140px
+    
+  #thinking-boy-clipart
+    max-width: 100%
+    max-height: 100%
 
-  #description + .container
-    img
-      max-width: 100%
-      max-height: 100%
-
-  #feature .row
-    margin-top: 2%
-
-    img
-      width: auto
-      height: 140px
+  .feature-clipart
+    width: auto
+    height: 140px
 
   footer
     height: 100px
@@ -56,18 +53,19 @@
     margin-top: 15px
 
 @media only screen and (max-width: 768px)
-  .front-page
+  #front-page
     #description + .container
       .col-xs-3
         float: right
       .col-xs-9
         float: left
 
-    #feature .row
+    #feature
       .col-sm-4
         text-align: left
         margin-bottom: 4%
-      img
-        height: auto
-        width: 100%
-        max-width: 100px
+
+    .feature-clipart
+      height: auto
+      width: 100%
+      max-width: 100px

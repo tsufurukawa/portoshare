@@ -1,24 +1,4 @@
 %nav(class="navbar navbar-inverse navbar-fixed-top" id="main-nav" role="navigation")
-  .login-signup-button-container
-    - unless logged_in?
-      %button.btn.btn-primary Log in
-      %button.btn.btn-primary{"data-target" => "#sign-up-modal", "data-toggle" => "modal"} Sign up
-    - else
-      .dropdown
-        %a.dropdown-toggle(id="dropdownMenu1" data-toggle="dropdown" href="#" role="button")
-          = current_user.email
-          %span.caret
-        %ul.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
-          %li.name(role="presentation") 
-            %a(role="menuitem" tabindex="-1" href="#")
-              = current_user.name
-              %p.text-muted View Profile
-          %li.divider(role="presentation")
-          %li(role="presentation")
-            %a(role="menuitem" tabindex="-1" href="#")Something
-          %li(role="presentation")
-            %a(role="menuitem" tabindex="-1" href="#")Log Out
-
   .container
     .navbar-header
       %button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-toggle")
@@ -29,4 +9,26 @@
       = link_to "PortoShare", "", class: "navbar-brand"
     .collapse.navbar-collapse#main-nav-toggle
       %ul.nav.navbar-nav
-        %li= link_to "About", ""
+        %li= link_to "About", "", class: "navbar-link"
+        %li= link_to "Another", "", class: "navbar-link"
+
+#login-signup-button-container
+  - unless logged_in?
+    %button.btn.btn-primary Log in
+    %button.btn.btn-primary{"data-target" => "#sign-up-modal", "data-toggle" => "modal"} Sign up
+  - else
+    .dropdown
+      %a.dropdown-toggle(id="dropdownMenu1" data-toggle="dropdown" href="#" role="button")
+        %i.fa.fa-user.fa-lg
+        = current_user.email
+        %span.caret
+      %ul.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
+        %li#name(role="presentation") 
+          %a#dropdown-user-name(role="menuitem" tabindex="-1" href="#")
+            = current_user.name
+            %p.text-muted View Profile
+        %li.divider(role="presentation")
+        %li(role="presentation")
+          %a.dropdown-item(role="menuitem" tabindex="-1" href="#")Something
+        %li(role="presentation")
+          %a.dropdown-item(role="menuitem" tabindex="-1" href="#")Log Out
