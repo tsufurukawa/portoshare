@@ -1,0 +1,4 @@
+$("#log-in-modal .modal-body").html("<%= escape_javascript(render 'shared/login_form', modal: true) %>").prepend("<div class='alert alert-danger'>Invalid email or password.</div>");
+$("#log-in .container").html("<%= escape_javascript(render 'shared/login_form', modal: false) %>").prepend("<h4>Log In Form</h4>");
+$("#log-in-modal .modal-content").effect("shake");
+$("#log-in .container").effect("shake");

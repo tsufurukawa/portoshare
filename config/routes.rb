@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   resources :projects, only: [:index, :show]
 
-  get '/sign_up', to: "users#new"
+  get '/sign_up', to: 'users#new'
   resources :users, only: [:create]
 
-  get '/log_in', to: "sessions#new"
+  get '/log_in', to: 'sessions#new'
+  post '/log_in', to: 'sessions#create'
 end

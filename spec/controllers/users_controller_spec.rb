@@ -1,7 +1,19 @@
 require 'rails_helper'
 
 describe UsersController do
+  describe "GET new" do
+    #TODO: change projects_path
+    it_behaves_like "require unauthenticated user" do
+      let(:action) { get :new }
+    end
+  end
+
   describe "POST create" do
+    #TODO: change projects_path
+    it_behaves_like "require unauthenticated user" do
+      let(:action) { post :create }
+    end
+    
     context "for valid user input" do
       before { post :create, user: Fabricate.attributes_for(:user) }
 
@@ -31,9 +43,14 @@ describe UsersController do
     end
 
     context "for ajax request" do
-      it "renders the 'create' javascript template" do
+      it "renders the 'create' javascript template for valid user input" do
         xhr :post, :create, user: Fabricate.attributes_for(:user)
         expect(response).to render_template :create
+      end
+
+      it "renders the 'signup_fail' javascript template for invalid user input" do
+        xhr :post, :create, user: { name: "alice" }
+        expect(response).to render_template :signup_fail
       end
     end
   end

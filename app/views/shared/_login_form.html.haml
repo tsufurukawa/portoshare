@@ -1,4 +1,4 @@
-= bootstrap_form_tag url: log_in_path do |f|
+= bootstrap_form_tag url: log_in_path, remote: true do |f|
   = f.email_field :email
   = f.password_field :password
   = f.submit "Log In", class: "btn btn-primary"

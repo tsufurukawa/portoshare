@@ -12,4 +12,12 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
+
+  def require_unauthenticated_user
+    # TODO: change "projects_path"
+    if logged_in?
+      flash[:danger] = "You cannot access that page."
+      redirect_to projects_path
+    end
+  end
 end

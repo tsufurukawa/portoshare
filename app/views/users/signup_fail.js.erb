@@ -1,0 +1,4 @@
+$("#sign-up-modal .modal-body").html("<%= escape_javascript(render 'shared/signup_form', user: @user, modal: true) %>");
+$("#sign-up .container").html("<%= escape_javascript(render 'shared/signup_form', user: @user, modal: false) %>").prepend("<h4>Sign Up Form</h4>");
+$("#sign-up-modal .modal-content").effect("shake");
+$("#sign-up .container").effect("shake");
