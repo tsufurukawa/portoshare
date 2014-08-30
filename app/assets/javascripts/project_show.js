@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(".caption").dotdotdot({
+  $("#project-show .text-container").dotdotdot({
     wrap: 'letter',
     watch: true
   });
@@ -9,6 +9,6 @@ $(document).ready(function() {
 });
 
 var setHeight = function() {
-  var $bulletinContentHeight = $(".bulletin-board-content").css("height");
-  $(".bulletin-board-wrapper > img").height($bulletinContentHeight);
+  var $bulletinContentHeight = $("#bulletin-board-content").css("height");
+  $("#board-background").height($bulletinContentHeight);
 };

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min.js
 //= require bootstrap-sprockets
 //= require jquery.scrollTo.min.js
 //= require jquery.localScroll.min.js

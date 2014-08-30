@@ -1,15 +1,58 @@
 #main-nav
   background: url("/tmp/green_dust_scratch.png")
-  padding: 1.5em 0
+  padding-top: 3.0em
+  padding-bottom: 0.5em
   border: none
+  z-index: 1
 
   .navbar-collapse
     border: none
 
-  a.navbar-brand
+  .navbar-brand
     font-size: 2.7em
     font-family: 'Lobster', cursive
     font-weight: bold
 
-  li a
+  .navbar-link
     font-size: 1.5em
+
+#login-signup-button-container
+  position: fixed
+  top: 0.5em
+  right: 1em
+  z-index: 3
+
+  .btn-primary
+    border-radius: 0
+
+  .dropdown
+    padding-top: 0.5em
+    padding-right: 0.3em
+
+    a:hover
+      text-decoration: none
+      color: #0066FF
+
+  #dropdownMenu1
+    font-size: 1.3em
+
+  .dropdown-item
+    font-size: 1.0em
+
+  #dropdown-user-name
+    font-size: 1.2em
+    padding-bottom: 0
+    padding-top: 0
+
+  #name p
+    font-size: 0.7em
+    margin-bottom: 0
+
+  .divider
+    margin: 3px 0
+
+  .dropdown-menu
+    z-index: 3 !important
+
+
+
