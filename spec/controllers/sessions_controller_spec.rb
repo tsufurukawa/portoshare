@@ -55,4 +55,25 @@ describe SessionsController do
       end
     end
   end
+
+  describe "DELETE destroy" do
+    it_behaves_like "require authenticated user" do
+      let(:action) { delete :destroy }
+    end
+
+    context "for authenticated users" do
+      before do
+        sets_current_user
+        delete :destroy
+      end
+
+      it "clears the session for the user" do
+        expect(session[:user_id]).to be_nil
+      end
+
+      it "redirects to root path" do
+        expect(response).to redirect_to root_path
+      end
+    end
+  end
 end

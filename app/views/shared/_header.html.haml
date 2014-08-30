@@ -31,4 +31,4 @@
         %li(role="presentation")
           %a.dropdown-item(role="menuitem" tabindex="-1" href="#")Something
         %li(role="presentation")
-          %a.dropdown-item(role="menuitem" tabindex="-1" href="#")Log Out
+          = link_to "Log Out", log_out_path, method: :delete, role: "menuitem", tabindex: "-1", class: "dropdown-item"

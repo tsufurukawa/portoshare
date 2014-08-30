@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :require_unauthenticated_user
+  before_action :require_unauthenticated_user, except: [:destroy]
+  before_action :require_authenticated_user, only: [:destroy]
 
   def new; end
 
@@ -19,5 +20,10 @@ class SessionsController < ApplicationController
         format.js { render :login_fail }
       end
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path
   end
 end
