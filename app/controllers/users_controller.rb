@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_unauthenticated_user
+  before_action :require_unauthenticated_user, only: [:new, :create]
+
+  def show
+
+  end
 
   def new
     @user = User.new

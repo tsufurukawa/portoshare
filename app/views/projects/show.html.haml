@@ -8,7 +8,7 @@
         %h4= @project.subtitle
         %h6 
           #{@project.created_at} by 
-          %span= link_to @project.user.name
+          %span= link_to @project.user.name, @project.user
         %i.fa.fa-tags.fa-lg
         %span 
           = link_to "hello"

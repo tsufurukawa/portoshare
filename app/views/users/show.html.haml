@@ -1,0 +1,31 @@
+#user-show.container-fluid
+  #user-top-content.row
+    #basic-user-info.col-sm-9
+      .row
+        #user-image-container.col-sm-4
+          = image_tag "http://lorempixel.com/170/170", id: "user-image"
+        #user-info.col-sm-8
+          %h2.name Tsubasa Furukawa
+          %p.location Location
+          %p.short-description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    #side-nav.col-sm-3
+      %ul.nav.nav-pills.nav-stacked{:role => "tablist"}
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#home", :role => "tab"} Home
+        %li
+          %a{"data-toggle" => "tab", :href => "#profile", :role => "tab"} Profile
+        %li
+          %a{"data-toggle" => "tab", :href => "#messages", :role => "tab"} Messages
+        %li
+          %a{"data-toggle" => "tab", :href => "#settings", :role => "tab"} Settings
+
+  .container
+    .tab-content.col-sm-12.row
+      #home.tab-pane.fade.in.active
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      #profile.tab-pane.fade
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      #messages.tab-pane.fade 
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      #settings.tab-pane.fade 
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
