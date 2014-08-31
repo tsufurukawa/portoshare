@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show]
 
   get '/sign_up', to: 'users#new'
-  resources :users, only: [:create]
+  resources :users, only: [:create] do
+    resources :projects, only: [:show]
+  end
 
   get '/log_in', to: 'sessions#new'
   post '/log_in', to: 'sessions#create'
