@@ -1,7 +1,10 @@
-= bootstrap_form_for(user, remote: true) do |f|
-  = f.text_field :name
-  = f.email_field :email
-  = f.password_field :password, help: "Must be at least 6 characters long"
-  = f.submit "Sign Up", class: "btn btn-primary"
-  - if modal
-    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+= bootstrap_form_for(user, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9", remote: true) do |f|
+  = f.text_field :name, value: ""
+  = f.text_field :username, value: ""
+  = f.email_field :email, value: ""
+  = f.text_field :location, name: "user[location]", class: "ff_elem", id: "f_elem_city", label: "Location (Optional)"
+  = f.password_field :password, help: "Must be at least 6 characters long", id: "password_field", value: ""
+  = f.form_group do
+    = f.submit "Sign Up", class: "btn btn-primary"
+    - if modal
+      %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

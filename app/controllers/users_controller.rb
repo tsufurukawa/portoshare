@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
+  before_action :require_authenticated_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
   before_action :require_unauthenticated_user, only: [:new, :create]
+  before_action :require_owner, only: [:edit, :update]
 
-  def show
-
-  end
+  def show; end
 
   def new
     @user = User.new
@@ -25,9 +26,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if @user.update(user_params)
+      flash[:success] = "You have successfully updated your profile."
+      redirect_to edit_user_path(@user)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :username, :location, :bio)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def require_owner
+    unless logged_in? && (@user.id == current_user.id)
+      flash[:danger] = "You don't have access to that page."
+      redirect_to user_path(current_user)
+    end
   end
 end

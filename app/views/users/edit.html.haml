@@ -1,0 +1,12 @@
+#user-edit.container
+  %h4 Edit Profile
+  %br
+  = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", method: "patch") do |f|
+    / = f.avatar TODO: uploading user avatar
+    = f.text_field :name
+    = f.text_field :username
+    = f.email_field :email
+    = f.text_field :location, name: "user[location]", class: "ff_elem", id: "f_elem_city", label: "Location (Optional)"
+    = f.text_area :bio, label: "About you", rows: "5", help: "Maximum 160 characters"
+    = f.form_group do
+      = f.submit "Update Profile", class: "btn btn-primary"

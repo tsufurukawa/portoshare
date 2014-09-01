@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def require_authenticated_user
     unless logged_in?
-      flash[:danger] = "You must be logged-in to do that."
+      flash[:danger] = "You must be logged in to access that page."
       redirect_to root_path
     end
   end

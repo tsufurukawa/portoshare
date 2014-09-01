@@ -8,6 +8,14 @@ describe UsersController do
     end
   end
 
+  describe "GET show" do
+    it "sets the @user variable" do
+      alice = Fabricate(:user)
+      get :show, id: alice.id
+      expect(assigns(:user)).to eq(alice)
+    end
+  end
+
   describe "POST create" do
     #TODO: change projects_path
     it_behaves_like "require unauthenticated user" do
@@ -51,6 +59,77 @@ describe UsersController do
       it "renders the 'signup_fail' javascript template for invalid user input" do
         xhr :post, :create, user: { name: "alice" }
         expect(response).to render_template :signup_fail
+      end
+    end
+  end
+
+  describe "GET edit" do
+    it_behaves_like "require authenticated user" do
+      let(:action) { get :edit, id: 1 }
+    end
+
+    it_behaves_like "require owner" do
+      let(:action) { get :edit, id: @bob.id }
+    end
+
+    it "sets the @user variable" do
+      alice = Fabricate(:user)
+      sets_current_user(alice)
+      get :edit, id: alice.id
+      expect(assigns(:user)).to eq(alice)
+    end
+  end
+
+  describe "PATCH update" do
+    it_behaves_like "require authenticated user" do
+      let(:action) { patch :update, id: 1, user: Fabricate.attributes_for(:user) }
+    end
+
+    it_behaves_like "require owner" do
+      let(:action) { patch :update, id: @bob.id, user: Fabricate.attributes_for(:user) }
+    end
+
+    context "for valid user input" do
+      let(:alice) { Fabricate(:user) }
+
+      before do
+        sets_current_user(alice)
+        patch :update, id: alice.id, user: Fabricate.attributes_for(:user, email: "new@email.com", bio: "new bio")
+      end
+
+      it "updates the user attributes" do        
+        expect(alice.reload.email).to eq("new@email.com")
+        expect(alice.reload.bio).to eq("new bio")
+      end
+
+      it "redirects to user edit path" do
+        expect(response).to redirect_to edit_user_path(alice)
+      end
+
+      it "sets a flash success message" do
+        expect(flash[:success]).to be_present
+      end
+    end
+
+    context "for invalid user input" do
+      let(:alice) { Fabricate(:user, username: "alice") }
+
+      before do
+        sets_current_user(alice)
+        patch :update, id: alice.id, user: { email: nil, username: alice.username + "123" }
+      end
+
+      it "does not update the user attributes" do
+        expect(alice.reload.username).not_to eq("alice123")
+        expect(alice.reload.username).to eq("alice")
+      end
+
+      it "renders the edit page" do
+        expect(response).to render_template :edit
+      end
+
+      it "sets the @user variable" do
+        expect(assigns(:user)).to eq(alice)
       end
     end
   end

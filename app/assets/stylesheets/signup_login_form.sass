@@ -1,3 +1,5 @@
+$form-input-background-color: #EEE
+
 // Using Extend
 .header
   font-family: "Lobster", cursive
@@ -10,7 +12,7 @@
     display: block
     margin-left: auto
     margin-right: auto
-    width: 300px
+    width: 400px
     margin-top: 100px
 
   .modal-content
@@ -22,22 +24,51 @@
   .modal-header
     border-bottom: 1px solid black
 
+  .form-control
+    background: $form-input-background-color
+
   h4
     @extend .header
     font-size: 1.6em
 
   .alert
     padding: 0.5em
-    margin-bottom: 0.5em  
+    margin-bottom: 0.5em
 
-#sign-up, #log-in
-  .container
+  .has-error
+    margin-bottom: 0
+
+#log-in-modal
+  .modal-dialog
     width: 300px
-    padding: 2.0em
 
+#sign-up-modal
+  .modal-body
+    padding-top: 35px
+
+  .form-group:nth-last-child(2)
+    margin-bottom: 0
+
+#log-in, #sign-up
   h4
     @extend .header
     font-size: 1.8em
     color: #357ebd
     text-decoration: underline
     margin-bottom: 0.7em
+
+  .container
+    max-width: 470px
+    padding: 2.0em
+    border: 1px solid #357ebd
+
+  .has-error
+    margin-bottom: 0
+
+#log-in
+  .container
+    max-width: 350px
+
+#sign-up
+  .form-group:nth-last-child(2)
+    margin-bottom: 0

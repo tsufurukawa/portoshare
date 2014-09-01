@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :projects, only: [:index, :show]
 
   get '/sign_up', to: 'users#new'
-  resources :users, only: [:show, :create] do
+  resources :users, only: [:show, :create, :edit, :update] do
     resources :projects, only: [:show]
   end
 

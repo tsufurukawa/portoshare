@@ -3,29 +3,31 @@
     #basic-user-info.col-sm-9
       .row
         #user-image-container.col-sm-4
+          // TODO: change to user.avatar
           = image_tag "http://lorempixel.com/170/170", id: "user-image"
         #user-info.col-sm-8
-          %h2.name Tsubasa Furukawa
-          %p.location Location
-          %p.short-description Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          %h2.name= @user.name
+          %h4.username= @user.username
+          %p.location= @user.location
+          %p.bio= @user.bio
     #side-nav.col-sm-3
       %ul.nav.nav-pills.nav-stacked{:role => "tablist"}
         %li.active
-          %a{"data-toggle" => "tab", :href => "#home", :role => "tab"} Home
+          %a{"data-toggle" => "tab", :href => "#projects", :role => "tab"} Projects
         %li
-          %a{"data-toggle" => "tab", :href => "#profile", :role => "tab"} Profile
+          %a{"data-toggle" => "tab", :href => "#followers", :role => "tab"} Followers
         %li
-          %a{"data-toggle" => "tab", :href => "#messages", :role => "tab"} Messages
+          %a{"data-toggle" => "tab", :href => "#followings", :role => "tab"} Followings
         %li
-          %a{"data-toggle" => "tab", :href => "#settings", :role => "tab"} Settings
+          %a{"data-toggle" => "tab", :href => "#edit", :role => "tab"} Edit Profile
 
   .container
     .tab-content.col-sm-12.row
-      #home.tab-pane.fade.in.active
+      #project.tab-pane.fade.in.active
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      #profile.tab-pane.fade
+      #followers.tab-pane.fade
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      #messages.tab-pane.fade 
+      #followings.tab-pane.fade 
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      #settings.tab-pane.fade 
+      #edit.tab-pane.fade 
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
