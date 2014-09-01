@@ -2,8 +2,12 @@
   = link_to @user, nil do
     %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
   %h1#account-info-header Account Information
-  = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", method: "patch") do |f|
-    / = f.avatar TODO: uploading user avatar
+  = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", method: "patch", :html => {:multipart => true}) do |f|
+    .form-group
+      %label.control-label.col-sm-2(for="user_avatar")Upload your photo
+      .col-sm-6.col-xs-6
+        = image_tag @user.avatar_url, size: "130x130", id: "user-avatar"
+        %input.form-control#user_avatar(name="user[avatar]" type="file")
     = f.text_field :name
     = f.text_field :username
     = f.email_field :email

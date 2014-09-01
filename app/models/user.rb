@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   validates :bio, length: { maximum: 160,
     too_long: "%{count} characters is the maximum allowed" }
 
+  mount_uploader :avatar, AvatarUploader
+
   def can_edit?(a_user)
     self == a_user
   end

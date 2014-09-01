@@ -14,6 +14,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'bcrypt'
 gem 'font-awesome-sass'
 gem 'bootstrap_form'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
