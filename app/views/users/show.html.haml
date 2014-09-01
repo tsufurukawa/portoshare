@@ -10,7 +10,7 @@
           %h4.username= @user.username
           %p.location= @user.location
           %p.bio= @user.bio
-          - if current_user.can_edit?(@user)
+          - if logged_in? && current_user.can_edit?(@user)
             = link_to edit_user_path(@user), id: "user-edit-link" do
               %i.fa.fa-pencil.fa-lg= " Edit Profile"
 
