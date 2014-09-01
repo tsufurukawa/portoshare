@@ -24,7 +24,7 @@
         %span.caret
       %ul.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1", :role => "menu"}
         %li#name(role="presentation") 
-          %a#dropdown-user-name(role="menuitem" tabindex="-1" href="#")
+          = link_to current_user, role: "menuitem", tabindex: "-1" do
             = current_user.name
             %p.text-muted View Profile
         %li.divider(role="presentation")

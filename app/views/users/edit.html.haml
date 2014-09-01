@@ -1,6 +1,7 @@
 #user-edit.container
-  %h4 Edit Profile
-  %br
+  = link_to @user, nil do
+    %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
+  %h1#account-info-header Account Information
   = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", method: "patch") do |f|
     / = f.avatar TODO: uploading user avatar
     = f.text_field :name

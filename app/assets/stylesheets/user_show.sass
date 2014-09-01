@@ -4,6 +4,7 @@
   #basic-user-info
     background: white
     min-height: 166px
+    position: relative
 
   #user-image
     border-radius: 100%
@@ -13,13 +14,26 @@
   #user-info
     margin-left: -4%
     padding-right: 0
+    position: static
 
   #user-top-content
     margin-bottom: 3em
     padding-left: 5%
     padding-right: 5%
 
+  #user-edit-link
+    padding: 0
+    background: transparent
+    position: absolute
+    top: 20px
+    right: 20px
+
 @media only screen and (max-width: 970px)
+  #user-show
+    #user-info
+      padding-left: 6%
+
+@media only screen and (max-width: 840px)
   #user-show
     #user-info
       padding-left: 10%

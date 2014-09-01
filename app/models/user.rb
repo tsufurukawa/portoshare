@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :bio, length: { maximum: 160,
     too_long: "%{count} characters is the maximum allowed" }
+
+  def can_edit?(a_user)
+    self == a_user
+  end
 end
