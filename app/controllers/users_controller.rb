@@ -29,6 +29,13 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
+    if params[:remove_avatar].present?
+      @user.update_columns(avatar: nil)
+      flash[:success] = "You have deleted your profile picture."
+      redirect_to edit_user_path(@user)
+      return
+    end
+
     if @user.update(user_params)
       flash[:success] = "You have successfully updated your profile."
       redirect_to edit_user_path(@user)

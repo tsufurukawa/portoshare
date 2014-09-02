@@ -132,5 +132,22 @@ describe UsersController do
         expect(assigns(:user)).to eq(alice)
       end
     end
+
+    context "when 'remove_avatar' parameter is present" do
+      let(:alice) { Fabricate(:user, avatar: "default_image") }
+
+      before do
+        sets_current_user(alice)
+        patch :update, id: alice.id, remove_avatar: true
+      end
+
+      it "deletes the user's avatar" do
+        expect(alice.reload.avatar.identifier).to be_nil
+      end
+
+      it "redirects to user edit page" do
+        expect(response).to redirect_to edit_user_path(alice)
+      end
+    end
   end
 end

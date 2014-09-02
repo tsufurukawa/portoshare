@@ -2,12 +2,14 @@
   = link_to @user, nil do
     %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
   %h1#account-info-header Account Information
-  = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", method: "patch", :html => {:multipart => true}) do |f|
+  = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", method: :patch, :html => {:multipart => true}) do |f|
     .form-group
       %label.control-label.col-sm-2(for="user_avatar")Upload your photo
       .col-sm-6.col-xs-6
         = image_tag @user.avatar_url, size: "130x130", id: "user-avatar"
         %input.form-control#user_avatar(name="user[avatar]" type="file")
+        = link_to user_path(@user, remove_avatar: true), method: :patch, data: { confirm: "Are you sure you want to delete your profile picture?" } do
+          %i.fa.fa-times= "  Remove photo"
     = f.text_field :name
     = f.text_field :username
     = f.email_field :email
@@ -15,3 +17,4 @@
     = f.text_area :bio, label: "About you", rows: "5", help: "Maximum 160 characters"
     = f.form_group do
       = f.submit "Update Profile", class: "btn btn-primary"
+
