@@ -4,7 +4,19 @@ class UsersController < ApplicationController
   before_action :require_unauthenticated_user, only: [:new, :create]
   before_action only: [:edit, :update] { require_owner(@user.id) }
 
-  def show; end
+  def show
+    if @user.has_linked_github?
+      token = @user.github_authorization.access_token
+      client = OctokitWrapper::Client.new(access_token: token)
+
+      @repositories = client.repos
+      @user_github = client.user
+
+      unless client.valid?
+        @error_message = client.error_message
+      end
+    end
+  end
 
   def new
     @user = User.new

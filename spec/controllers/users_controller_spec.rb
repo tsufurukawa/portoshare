@@ -9,10 +9,59 @@ describe UsersController do
   end
 
   describe "GET show" do
-    it "sets the @user variable" do
-      alice = Fabricate(:user)
-      get :show, id: alice.id
-      expect(assigns(:user)).to eq(alice)
+    context "when user has a linked github account and token is valid" do
+      let(:alice) { Fabricate(:user) }
+
+      before do
+        authorization = Fabricate(:authorization, provider: "github", user: alice)
+        client = double(:client, repos: [1, 2, 3], user: {:login=>"testuser", :id=>"1234567"}, valid?: true)
+        allow(OctokitWrapper::Client).to receive(:new).and_return(client)
+        get :show, id: alice.id
+      end
+
+      it "sets the @user variable" do
+        expect(assigns(:user)).to eq(alice)
+      end
+
+      it "sets the @repositories variable" do
+        expect(assigns(:repositories)).to eq([1, 2, 3])
+      end
+
+      it "sets the @user_github variable" do
+        expect(assigns(:user_github)).to eq({:login=>"testuser", :id=>"1234567"})
+      end
+    end
+
+    context "when user has a linked github account and token is invalid" do
+      let(:alice) { Fabricate(:user) }
+      let(:error_msg) { "There was an error..." }
+
+      before do
+        authorization = Fabricate(:authorization, provider: "github", user: alice)
+        client = double(:client, repos: error_msg, user: error_msg, valid?: false, error_message: error_msg)
+        allow(OctokitWrapper::Client).to receive(:new).and_return(client)
+        get :show, id: alice.id
+      end
+
+      it "sets an @error_message variable" do
+        expect(assigns(:error_message)).to eq(error_msg)
+      end
+    end
+
+    context "when user does not have a linked github account" do
+      let(:alice) { Fabricate(:user) }
+      before { get :show, id: alice.id }
+
+      it "sets the @user variable" do
+        expect(assigns(:user)).to eq(alice)
+      end
+
+      it "does not access the user's github account data" do
+        client = double(:client)
+        expect(client).not_to receive(:repos)
+        expect(client).not_to receive(:user)
+        expect(client).not_to receive(:error_message)
+      end
     end
   end
 

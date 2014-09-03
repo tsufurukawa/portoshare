@@ -19,6 +19,7 @@ gem 'mini_magick'
 gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'octokit'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -30,6 +31,8 @@ end
 
 group :test do
   gem 'shoulda-matchers', require: false
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :test, :development do
