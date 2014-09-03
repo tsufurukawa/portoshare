@@ -16,6 +16,9 @@ gem 'font-awesome-sass'
 gem 'bootstrap_form'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'figaro'
+gem 'omniauth'
+gem 'omniauth-github'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

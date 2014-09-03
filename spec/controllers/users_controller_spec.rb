@@ -71,7 +71,7 @@ describe UsersController do
     it_behaves_like "require owner" do
       let(:action) { get :edit, id: @bob.id }
     end
-
+    
     it "sets the @user variable" do
       alice = Fabricate(:user)
       sets_current_user(alice)

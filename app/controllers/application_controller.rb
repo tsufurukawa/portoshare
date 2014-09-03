@@ -27,4 +27,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def require_owner(user_params_id)
+    unless logged_in? && (user_params_id.to_i == current_user.id)
+      flash[:danger] = "You don't have access to that page."
+      redirect_to user_path(current_user)
+    end
+  end
 end

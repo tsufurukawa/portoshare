@@ -14,7 +14,15 @@
     = f.text_field :username
     = f.email_field :email
     = f.text_field :location, name: "user[location]", class: "ff_elem", id: "f_elem_city", label: "Location (Optional)"
-    = f.text_area :bio, label: "About you", rows: "5", help: "Maximum 160 characters"
+    .form-group
+      %label.control-label.col-sm-2(for="link_github")Link Github (Optional)
+      .col-sm-6.col-xs-6
+        - if current_user.has_linked_github?
+          = link_to "Unlink Your Github Account", user_unlink_github_path(@user), method: :delete, class: "btn btn-danger"
+        - else
+          = link_to "Link Your Github Account", new_user_authorization_path(@user), class: "btn btn-info"
+
+    = f.text_area :bio, label: "About you (Optional)", rows: "5", help: "Maximum 160 characters"
     = f.form_group do
       = f.submit "Update Profile", class: "btn btn-primary"
 

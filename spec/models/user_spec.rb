@@ -24,4 +24,17 @@ describe User do
       expect(alice.can_edit?(bob)).to be_falsy
     end
   end
+
+  describe "#has_linked_github?" do
+    it "returns true if user has a linked github account" do
+      alice = Fabricate(:user)
+      github_authorization = Fabricate(:authorization, provider: "github", user: alice)
+      expect(alice.has_linked_github?).to be_truthy
+    end
+
+    it "returns false if user does not have a linked github account" do
+      alice = Fabricate(:user)
+      expect(alice.has_linked_github?).to be_falsy
+    end
+  end
 end

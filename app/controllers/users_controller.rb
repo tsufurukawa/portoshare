@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :require_authenticated_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
   before_action :require_unauthenticated_user, only: [:new, :create]
-  before_action :require_owner, only: [:edit, :update]
+  before_action only: [:edit, :update] { require_owner(@user.id) }
 
   def show; end
 
@@ -52,12 +52,5 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def require_owner
-    unless logged_in? && (@user.id == current_user.id)
-      flash[:danger] = "You don't have access to that page."
-      redirect_to user_path(current_user)
-    end
   end
 end

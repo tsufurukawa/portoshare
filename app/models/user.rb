@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :projects, -> { order(created_at: :desc) }
+  has_many :authorizations
   has_secure_password validations: false
 
   validates :name, presence: true
@@ -13,5 +14,13 @@ class User < ActiveRecord::Base
 
   def can_edit?(a_user)
     self == a_user
+  end
+
+  def github_authorization
+    authorizations.where(provider: "github").first
+  end
+
+  def has_linked_github?
+    github_authorization.present?
   end
 end
