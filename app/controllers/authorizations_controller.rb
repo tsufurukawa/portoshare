@@ -10,7 +10,7 @@ class AuthorizationsController < ApplicationController
     auth = request.env["omniauth.auth"]
 
     begin  
-      authorization = Authorization.create!({
+      authorization = Authorization.find_or_create_by!({
         provider: auth[:provider],
         uid: auth[:uid],
         access_token: auth[:credentials][:token],
