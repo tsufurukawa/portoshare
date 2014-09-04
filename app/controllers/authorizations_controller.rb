@@ -7,13 +7,15 @@ class AuthorizationsController < ApplicationController
   end
 
   def create
-    auth = request.env["omniauth.auth"]
+    auth = request.env["omniauth.auth"].except(:extra)
 
     begin  
       authorization = Authorization.find_or_create_by!({
         provider: auth[:provider],
         uid: auth[:uid],
         access_token: auth[:credentials][:token],
+        nickname: auth[:info][:nickname],
+        url: auth[:info][:urls][:GitHub],
         user: current_user
       })
       flash[:success] = "You have successfully linked your Github account!"

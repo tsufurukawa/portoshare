@@ -16,38 +16,52 @@
     #side-nav.col-sm-3
       %ul.nav.nav-pills.nav-stacked{:role => "tablist"}
         %li.active
-          %a{"data-toggle" => "tab", :href => "#projects", :role => "tab"} Projects
+          %a.tab-item{"data-toggle" => "tab", :href => "#projects", :role => "tab"} Projects
         %li
-          %a{"data-toggle" => "tab", :href => "#followers", :role => "tab"} Followers
+          %a.tab-item{"data-toggle" => "tab", :href => "#followers", :role => "tab"} Followers
         %li
-          %a{"data-toggle" => "tab", :href => "#followings", :role => "tab"} Followings
+          %a.tab-item{"data-toggle" => "tab", :href => "#followings", :role => "tab"} Followings
         %li
-          %a{"data-toggle" => "tab", :href => "#github", :role => "tab"} Github
+          %a.tab-item{"data-toggle" => "tab", :href => "#github", :role => "tab"} Github
         - if logged_in? && current_user.can_edit?(@user)
           %li
-            = link_to "Edit Profile", edit_user_path(@user)
+            = link_to "Edit Profile", edit_user_path(@user), class: "tab-item"
         %li
-          = link_to "Reset Password", "#"
+          = link_to "Reset Password", "#", class: "tab-item"
 
-  .container
-    .tab-content.col-sm-12.row
+  .container-fluid
+    .tab-content.col-sm-12
       #projects.tab-pane.fade.in.active
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       #followers.tab-pane.fade
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       #followings.tab-pane.fade 
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      #github.tab-pane.fade 
+      #github.tab-pane.fade
+        %h2#github-title Github Repositories
         - if @user.has_linked_github?
           - if @error_message
             .alert.alert-danger= @error_message
           - else
-            - @repositories.each do |repo|
-              %p= repo.name
-              = link_to "To Repo", repo.html_url
-              %p= repo.description
-              %p= repo.watchers_count
-              %p= repo.stargazers_count
+            #repo-container
+              - @repositories.each do |repo|
+                .col-sm-6
+                  .repo-item
+                    %h4.repo-name= repo.name.titleize
+                    %i.fa.fa-code
+                      %span.repo-language= repo.language
+                    %p.repo-description= repo.description
+                    = link_to repo.html_url, id: "repo-link" do
+                      %i.fa.fa-github= " Continue to Github Repository"
+                    %p.updated_at
+                      %span.text-muted Last updated
+                      %span= repo.updated_at
+                    %i.fa.fa-star= " #{repo.stargazers_count}"
+              .col-sm-6
+                .repo-item
+                  = link_to @user_github.html_url, id: "to-github-link" do
+                    %i.fa.fa-github.fa-4x
+                    %p= "Visit #{@user_github.login} Github Profile"
         - else
           .alert.alert-danger This user has not yet linked a Github account.
 

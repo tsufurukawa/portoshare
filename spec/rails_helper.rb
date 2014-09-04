@@ -16,10 +16,9 @@ omniauth_hash = {
     'name' => 'Test User',
     'email' => 'test@example.com',
     'nickname' => 'testuser',
+    'urls' => {'GitHub' => 'http://test.com'}
   },
-  'credentials' => {
-    "token"=>"4dad72e2e8b8ed8635f08e42c187531191ac8e04", "expires"=>false
-  }
+  'credentials' => {"token"=>"123", "expires"=>false}
 }
 
 OmniAuth.config.add_mock(:github, omniauth_hash)

@@ -10,7 +10,7 @@ module OctokitWrapper
 
     def repos
       begin
-        response.repos
+        response.repos(user, sort: :updated_at).first(5)
       rescue Octokit::Unauthorized => e
         @error_message = GITHUB_ERROR_MSG
       end

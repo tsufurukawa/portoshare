@@ -1,5 +1,15 @@
+$primary-blue-color: #428BCA
+$hover-blue-color: #0066FF
+
 #user-show
   max-width: 1170px
+  
+  a:hover
+    color: $hover-blue-color
+
+  .active
+    .tab-item:hover
+      color: white
 
   #basic-user-info
     background: white
@@ -17,7 +27,7 @@
     position: static
 
   #user-top-content
-    margin-bottom: 3em
+    margin-bottom: 0.5em
     padding-left: 5%
     padding-right: 5%
 
@@ -28,10 +38,73 @@
     top: 20px
     right: 20px
 
+
+  // all headers
+  #github-title
+    font-family: "Lobster", cursive
+    color: $primary-blue-color
+    padding-bottom: 0.4em
+    padding-left: 0.6em
+
+  // github styling
+  #github
+    .repo-item
+      position: relative
+      background: rgba(66, 139, 202, 0.15)
+      box-shadow: 2px 3px 5px $primary-blue-color 
+      min-height: 200px
+      padding: 0.8em 1.4em
+      margin-bottom: 1.5em
+      border-radius: 1em
+
+    .repo-name
+      font-size: 1.6em
+      padding-bottom: 0.3em
+      border-bottom: 0.13em white solid
+
+    .fa-code
+      position: absolute
+      top: 0.7em
+      right: 0.7em
+      font-weight: 600
+      font-size: 1.2em
+
+    .repo-description
+      font-size: 1.2em
+      font-family: "Garamond", "Times New Roman", serif
+
+    .fa-star
+      position: absolute
+      right: 1.2em
+      bottom: 0.5em
+
+    #repo-link
+      font-size: 1.2em
+
+    .updated_at
+      position: absolute
+      margin-bottom: 0
+      left: 1.2em
+      bottom: 0.5em
+      font-size: 1.0em
+
+    #to-github-link
+      text-align: center
+      font-size: 1.7em
+
+      .fa-github
+        display: block
+
+
+  .container-fluid
+    max-width: 1000px
+
 @media only screen and (max-width: 970px)
   #user-show
     #user-info
       padding-left: 6%
+    .repo-item
+      font-size: 0.9em !important
 
 @media only screen and (max-width: 840px)
   #user-show
@@ -53,6 +126,13 @@
       display: block
       margin-left: auto
       margin-right: auto
+
+    .container-fluid
+      max-width: 600px
+      min-width: 430px
+
+    .repo-item
+      font-size: 1.0em !important
 
 
 
