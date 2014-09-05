@@ -1,10 +1,11 @@
 #user-edit.container
-  = link_to @user, nil do
+  = link_to @user do
     %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
   %h1#account-info-header Account Information
+
   = bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", method: :patch, :html => {:multipart => true}) do |f|
     .form-group
-      %label.control-label.col-sm-2(for="user_avatar")Upload your photo
+      %label.control-label.col-sm-2.col-xs-12(for="user_avatar")Upload your photo
       .col-sm-6.col-xs-6
         = image_tag @user.avatar_url, size: "130x130", id: "user-avatar"
         %input.form-control#user_avatar(name="user[avatar]" type="file")
@@ -15,7 +16,7 @@
     = f.email_field :email
     = f.text_field :location, name: "user[location]", class: "ff_elem", id: "f_elem_city", label: "Location (Optional)"
     .form-group
-      %label.control-label.col-sm-2(for="link_github")Link Github (Optional)
+      %label.control-label.col-sm-2.col-xs-12(for="link_github")Link Github (Optional)
       .col-sm-6.col-xs-6
         - if current_user.has_linked_github?
           = link_to "Unlink Your Github Account", user_unlink_github_path(@user), method: :delete, class: "btn btn-danger"

@@ -26,6 +26,7 @@ describe AuthorizationsController do
     let(:alice) { Fabricate(:user) }
 
     before do 
+      request.env["HTTP_REFERER"] = "http://test.host/"
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
       sets_current_user(alice)
       get :create, provider: "github"
@@ -39,8 +40,8 @@ describe AuthorizationsController do
       expect(Authorization.first.user).to eq(alice)
     end
 
-    it "redirects to user edit path" do
-      expect(response).to redirect_to edit_user_path(alice)
+    it "redirects to the previous page" do
+      expect(response).to redirect_to :back
     end
 
     it "sets a flash success message" do

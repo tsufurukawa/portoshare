@@ -1,0 +1,36 @@
+- if user.has_linked_github?
+  #linked-github.container-fluid
+    %h2#github-title Github Repositories
+    #repo-container
+      - repositories.each do |repo|
+        .col-sm-6
+          .repo-item
+            %h4.repo-name= repo.name.titleize
+            %i.fa.fa-code
+              %span.repo-language= repo.language
+            %p.repo-description= repo.description
+            = link_to repo.html_url, id: "repo-link" do
+              %i.fa.fa-github= " Continue to Github Repository"
+            %p.updated_at
+              %span.text-muted Last updated
+              %span= repo.updated_at
+            %i.fa.fa-star= " #{repo.stargazers_count}"
+      - if user.github_url_present?
+        .col-sm-6
+          .repo-item
+            = link_to user_github.url, id: "to-github-link" do
+              %i.fa.fa-github.fa-4x
+              %p= "Visit #{user_github.nickname} Github Profile"
+- else
+  #unlinked-github.container-fluid
+    %h2#github-title Github Repositories
+    - if logged_in? && current_user.can_edit?(user)
+      .col-sm-6
+        %p.unlinked-message You have not yet linked your Github account. Click on the button to activate this feature.
+      .col-sm-6
+        = link_to new_user_authorization_path(current_user), class: "btn btn-info", id: "github-link" do
+          %i.fa.fa-github= " Link Github Account"
+    - else
+      #unlinked-github-stranger
+        %p.unlinked-message.text-danger This user has not yet linked a Github account
+        %i.fa.fa-github.fa-4x

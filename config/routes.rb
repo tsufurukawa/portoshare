@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   delete '/log_out', to: 'sessions#destroy'
 
   get '/auth/:provider/callback', to: 'authorizations#create'
+  get '/auth/failure', to: 'authorizations#failure'
 end

@@ -9,12 +9,12 @@ describe UsersController do
   end
 
   describe "GET show" do
-    context "when user has a linked github account and token is valid" do
+    context "when user has a linked github account with authorized github access" do
       let(:alice) { Fabricate(:user) }
+      let!(:authorization) { Fabricate(:authorization, provider: "github", user: alice) }
 
       before do
-        authorization = Fabricate(:authorization, provider: "github", user: alice)
-        client = double(:client, repos: [1, 2, 3], user: {:login=>"testuser", :id=>"1234567"}, valid?: true)
+        client = double(:client, repos: [1, 2, 3], valid?: true)
         allow(OctokitWrapper::Client).to receive(:new).and_return(client)
         get :show, id: alice.id
       end
@@ -28,23 +28,22 @@ describe UsersController do
       end
 
       it "sets the @user_github variable" do
-        expect(assigns(:user_github)).to eq({:login=>"testuser", :id=>"1234567"})
+        expect(assigns[:user_github]).to eq(authorization)
       end
     end
 
-    context "when user has a linked github account and token is invalid" do
+    context "when user has a linked github account with unauthorized github access" do
       let(:alice) { Fabricate(:user) }
-      let(:error_msg) { "There was an error..." }
 
       before do
         authorization = Fabricate(:authorization, provider: "github", user: alice)
-        client = double(:client, repos: error_msg, user: error_msg, valid?: false, error_message: error_msg)
+        client = double(:client, repos: "Error message", valid?: false)
         allow(OctokitWrapper::Client).to receive(:new).and_return(client)
         get :show, id: alice.id
       end
 
-      it "sets an @error_message variable" do
-        expect(assigns(:error_message)).to eq(error_msg)
+      it "unlinks the user's github account" do
+        expect(alice.reload.authorizations).not_to be_present
       end
     end
 
@@ -59,8 +58,6 @@ describe UsersController do
       it "does not access the user's github account data" do
         client = double(:client)
         expect(client).not_to receive(:repos)
-        expect(client).not_to receive(:user)
-        expect(client).not_to receive(:error_message)
       end
     end
   end

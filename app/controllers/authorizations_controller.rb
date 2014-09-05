@@ -9,7 +9,7 @@ class AuthorizationsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"].except(:extra)
 
-    begin  
+    begin
       authorization = Authorization.find_or_create_by!({
         provider: auth[:provider],
         uid: auth[:uid],
@@ -23,7 +23,7 @@ class AuthorizationsController < ApplicationController
       flash[:danger] = "There was an error when attempting to link your Github account. Please contact customer service if the problem persists."
     end
 
-    redirect_to edit_user_path(current_user)
+    set_redirect
   end
 
   def destroy
@@ -35,5 +35,19 @@ class AuthorizationsController < ApplicationController
     end
     
     redirect_to edit_user_path(current_user)
+  end
+
+  # for catching invalid authentication on provider side
+  def failure
+    flash[:danger] = params[:message] if params[:message]
+    redirect_to edit_user_path(current_user)
+  end
+
+  def set_redirect
+    begin
+      redirect_to :back
+    rescue ActionController::RedirectBackError
+      redirect_to edit_user_path(current_user)
+    end
   end
 end

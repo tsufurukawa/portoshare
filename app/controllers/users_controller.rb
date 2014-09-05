@@ -10,10 +10,12 @@ class UsersController < ApplicationController
       client = OctokitWrapper::Client.new(access_token: token)
 
       @repositories = client.repos
-      @user_github = client.user
+      @user_github = @user.github_authorization
 
+      # this will get triggered if user revokes access to their Github account
       unless client.valid?
-        @error_message = client.error_message
+        # TODO: send an email to notify user Github account has been unlinked
+        @user.github_authorization.destroy
       end
     end
   end

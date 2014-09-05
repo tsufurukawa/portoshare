@@ -1,11 +1,14 @@
 $primary-blue-color: #428BCA
 $hover-blue-color: #0066FF
+$primary-red-color: #ff4d4d
 
 #user-show
   max-width: 1170px
   
   a:hover
     color: $hover-blue-color
+    .fa-github
+      text-decoration: underline
 
   .active
     .tab-item:hover
@@ -44,7 +47,7 @@ $hover-blue-color: #0066FF
     font-family: "Lobster", cursive
     color: $primary-blue-color
     padding-bottom: 0.4em
-    padding-left: 0.6em
+    padding-left: 0.3em
 
   // github styling
   #github
@@ -67,7 +70,7 @@ $hover-blue-color: #0066FF
       top: 0.7em
       right: 0.7em
       font-weight: 600
-      font-size: 1.2em
+      font-size: 1.1em
 
     .repo-description
       font-size: 1.2em
@@ -95,9 +98,32 @@ $hover-blue-color: #0066FF
       .fa-github
         display: block
 
+    .unlinked-message
+      font-size: 1.4em
 
-  .container-fluid
-    max-width: 1000px
+    #github-link
+      display: block
+      margin-left: auto
+      margin-right: auto
+      font-size: 1.6em
+
+    #github-link:hover
+      color: white
+
+    #linked-github
+      max-width: 1000px
+
+    #unlinked-github
+      max-width: 900px
+
+    #unlinked-github-stranger
+      background: rgba(66, 139, 202, 0.15)
+      text-align: center
+      padding: 2em 3em
+
+      .unlinked-message
+        font-size: 1.6em
+        color: $primary-red-color
 
 @media only screen and (max-width: 970px)
   #user-show
@@ -127,12 +153,22 @@ $hover-blue-color: #0066FF
       margin-left: auto
       margin-right: auto
 
-    .container-fluid
+    #github
       max-width: 600px
-      min-width: 430px
+
+    #unlinked-github
+      font-size: 0.8em
 
     .repo-item
       font-size: 1.0em !important
+
+    #github-link, #unlinked-github-stranger
+      margin-bottom: 5em      
+
+@media only screen and (max-width: 550px)
+  #user-show
+    .updated_at
+      display: none
 
 
 

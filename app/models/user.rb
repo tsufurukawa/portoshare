@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def has_linked_github?
     github_authorization.present?
   end
+
+  def github_url_present?
+    github_authorization.url.present?
+  end
 end
