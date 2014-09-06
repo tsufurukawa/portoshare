@@ -43,7 +43,7 @@ $primary-red-color: #ff4d4d
 
 
   // all headers
-  #github-title
+  #github-header, #project-header
     font-family: "Lobster", cursive
     color: $primary-blue-color
     padding-bottom: 0.4em
@@ -125,6 +125,38 @@ $primary-red-color: #ff4d4d
         font-size: 1.6em
         color: $primary-red-color
 
+  // user projects styling
+
+  #projects
+    margin-top: 2%
+    padding: 1% 6%
+    margin-bottom: 5em
+
+    li
+      list-style: none
+
+    .thumbnail
+      background: rgba(66, 139, 202, 0.15)
+      position: relative
+
+    .caption
+      height: 80px
+      padding-top: 0      
+
+    #project-title
+      font-size: 1.2em
+      font-weight: 800
+
+    #project-subtitle
+      font-size: 1em
+      color: black
+
+    .fa-thumbs-o-up
+      position: absolute
+      bottom: 0.2em
+      right: 0.3em
+      color: black
+
 @media only screen and (max-width: 970px)
   #user-show
     #user-info
@@ -163,7 +195,13 @@ $primary-red-color: #ff4d4d
       font-size: 1.0em !important
 
     #github-link, #unlinked-github-stranger
-      margin-bottom: 5em      
+      margin-bottom: 5em
+
+    #projects
+      .thumbnail
+        width: 350px
+        margin-left: auto
+        margin-right: auto
 
 @media only screen and (max-width: 550px)
   #user-show

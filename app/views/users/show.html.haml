@@ -30,13 +30,24 @@
           = link_to "Reset Password", "#", class: "tab-item"
 
   .tab-content.col-sm-12
-    #projects.tab-pane.fade.in.active
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    #projects.tab-pane.fade.in.active.container-fluid
+      %h2#project-header My Projects
+      .row
+        - @user.projects.each do |project|
+          %li.col-sm-6.col-md-4
+            .thumbnail
+              = link_to user_project_path(@user, project), nil do
+                = image_tag "http://lorempixel.com/430/300" # TODO: change to project.image.url
+              .caption
+                = link_to user_project_path(@user, project), nil do
+                  %h3#project-title= project.title
+                %p#project-subtitle= project.subtitle
+              = link_to "#", nil do
+                %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " 22"
+      
     #followers.tab-pane.fade
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     #followings.tab-pane.fade 
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     #github.tab-pane.fade.container-fluid
       = render "github", user: @user, repositories: @repositories, user_github: @user_github
-
-

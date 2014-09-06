@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("#project-index .caption").dotdotdot({
+  $("#user-show .caption").dotdotdot({
     wrap: 'letter',
     watch: true
   });

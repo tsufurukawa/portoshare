@@ -1,6 +1,6 @@
 - if user.has_linked_github?
   #linked-github.container-fluid
-    %h2#github-title Github Repositories
+    %h2#github-header Github Repositories
     #repo-container
       - repositories.each do |repo|
         .col-sm-6
@@ -23,7 +23,7 @@
               %p= "Visit #{user_github.nickname} Github Profile"
 - else
   #unlinked-github.container-fluid
-    %h2#github-title Github Repositories
+    %h2#github-header Github Repositories
     - if logged_in? && current_user.can_edit?(user)
       .col-sm-6
         %p.unlinked-message You have not yet linked your Github account. Click on the button to activate this feature.

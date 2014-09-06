@@ -1,4 +1,12 @@
+$hover-blue-color: #0066FF
+$serif-font: "Garamond", "Times New Roman", serif
+
 #project-show
+  max-width: 1000px
+
+  a:hover
+    color: $hover-blue-color
+
   #bulletin-board-wrapper
     position: relative
     
@@ -7,41 +15,41 @@
     margin-left: auto
     margin-right: auto
     width: 100%
-    border: 20px solid brown
-    border-image: url("/tmp/dark_wood_frame.jpeg") 20
+    border: 20px solid #78532D  
       
   #bulletin-board-content
     position: absolute
     top: 0
     left: 0
     width: 100%
-    padding: 8%
+    padding: 8% 8% 4% 8%
 
   #title-container
     text-align: center
     margin-bottom: 1.5em
 
-    h1
-      font-family: 'Lobster', cursive
-      font-size: 3.3em
-      font-weight: bold
+  #project-title
+    font-family: 'Lobster', cursive
+    font-size: 3.1em
+    font-weight: bold
 
-    h4
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-      font-size: 1.6em
-      font-weight: 400
+  #project-subtitle
+    font-size: 1.7em
 
-    h6
-      font-size: 1.0em
-      span
-        font-size: 1.2em
+  #project-created-at
+    font-size: 1.0em
+    span
+      font-size: 1.2em
+
+  .tag
+    font-size: 1.25em
 
   #project-basic-info
     margin-bottom: 3em
 
-    p
-      font-family: "Garamond", "Times New Roman", serif
-      font-size: 1.1em
+  #project-main-description
+    font-family: $serif-font
+    font-size: 1.15em
 
   #project-image
     width: 100%
@@ -73,17 +81,28 @@
       left: 0
       padding: 15% 18% 18% 8%
 
+    .more-info-header
+      font-size: 1.2em
+
+    .more-info-description
+      font-family: $serif-font
+      font-size: 1.1em
+
 @media only screen and (max-width: 768px)
   #project-show
     #board-background
-      border-width: 10px !important
+      border-width: 13px !important
       width: 90% !important
 
     #bulletin-board-content
-      padding: 12% !important
+      padding: 7% 12% 2% 12% !important
 
     #project-image
-      width: 90% !important
+      width: 80% !important
       display: block
       margin-left: auto
       margin-right: auto
+      margin-bottom: 3em
+
+    #bulletin-board-wrapper
+      font-size: 0.85em
