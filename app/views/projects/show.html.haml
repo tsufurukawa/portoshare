@@ -1,14 +1,13 @@
 #project-show.container-fluid
   #bulletin-board-wrapper
-    = image_tag "/tmp/retina_wood.png", id: "board-background"
-
     #bulletin-board-content
       #title-container
         %h1#project-title= @project.title
         %h4#project-subtitle= @project.subtitle
         %h6#project-created-at
           #{@project.created_at} by 
-          %span= link_to @project.user.name, @project.user
+          %span
+            = link_to @project.user.name, @project.user, class: "hello"
         %i.fa.fa-tags.fa-lg
         %span.tag
           = link_to "hello"
@@ -29,27 +28,30 @@
           %h3 Project Description
           %p#project-main-description= @project.main_description
 
-    #project-more-info
-      .wrapper{"data-toggle" => "popover", "title" => "some title", "data-trigger" => "hover", href: "#", "data-placement" => "right"}
-        = image_tag "/tmp/postit-yellow.png", class: "postit"
+    #project-more-info.row
+      .col-xs-6.col-sm-4
+        = image_tag "/tmp/postit-yellow-380.png", class: "postit"
         .text-container
           %h4.more-info-header User Added Information
-          %p.more-info-description= Faker::Lorem.sentences(10).join(' ')
+          %p.more-info-description= Faker::Lorem.sentences(2).join(' ')
 
-      .wrapper
-        = image_tag "/tmp/postit-orange.png", class: "postit"
+      .col-xs-6.col-sm-4
+        = image_tag "/tmp/postit-orange-380.png", class: "postit"
         .text-container
           %h4.more-info-header More User Added Information
-          %p.more-info-description= Faker::Lorem.sentences(10).join(' ')
+          %p.more-info-description= Faker::Lorem.sentences(12).join(' ')
 
-      .wrapper
-        = image_tag "/tmp/postit-blue.png", class: "postit"
+      .col-xs-6.col-sm-4
+        = image_tag "/tmp/postit-blue-380.png", class: "postit"
         .text-container
           %h4.more-info-header More User Added Information
-          %p.more-info-description= Faker::Lorem.sentences(10).join(' ')
+          %p.more-info-description= Faker::Lorem.sentences(5).join(' ')
 
-      .wrapper
-        = image_tag "/tmp/postit-blue.png", class: "postit"
+      .col-xs-6.col-sm-4
+        = image_tag "/tmp/postit-blue-380.png", class: "postit"
         .text-container
           %h4.more-info-header More User Added Information
-          %p.more-info-description= Faker::Lorem.sentences(10).join(' ')
+          %p.more-info-description= Faker::Lorem.sentences(8).join(' ')
+
+
+//{"data-toggle" => "popover", "title" => "some title", "data-trigger" => "hover", href: "#", "data-placement" => "right"}

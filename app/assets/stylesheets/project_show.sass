@@ -8,25 +8,16 @@ $serif-font: "Garamond", "Times New Roman", serif
     color: $hover-blue-color
 
   #bulletin-board-wrapper
-    position: relative
-    
-  #board-background
-    display: block
-    margin-left: auto
-    margin-right: auto
+    background: url("/tmp/retina_wood.png")
     width: 100%
-    border: 20px solid #78532D  
-      
-  #bulletin-board-content
-    position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    padding: 8% 8% 4% 8%
+    border: 20px solid #78532D
+    padding: 6% 0 4% 0
 
   #title-container
     text-align: center
     margin-bottom: 1.5em
+    padding-right: 5%
+    padding-left: 5%
 
   #project-title
     font-family: 'Lobster', cursive
@@ -46,6 +37,8 @@ $serif-font: "Garamond", "Times New Roman", serif
 
   #project-basic-info
     margin-bottom: 3em
+    padding-left: 5%
+    padding-right: 5%
 
   #project-main-description
     font-family: $serif-font
@@ -58,18 +51,8 @@ $serif-font: "Garamond", "Times New Roman", serif
     margin-top: 1em
 
   #project-more-info
-    margin-top: -2.5%
-
-    .wrapper
-      display: inline-block
-      position: relative
-      width: 32%
-      height: auto
-      margin-top: -5%
-
     .postit
-      display: block
-      width: 100%
+      width: 113%
       height: auto
       padding: 0
 
@@ -79,7 +62,7 @@ $serif-font: "Garamond", "Times New Roman", serif
       height: 100%
       top: 0
       left: 0
-      padding: 15% 18% 18% 8%
+      padding: 17% 12% 13% 13%
 
     .more-info-header
       font-size: 1.2em
@@ -90,12 +73,8 @@ $serif-font: "Garamond", "Times New Roman", serif
 
 @media only screen and (max-width: 768px)
   #project-show
-    #board-background
+    #bulletin-board-wrapper
       border-width: 13px !important
-      width: 90% !important
-
-    #bulletin-board-content
-      padding: 7% 12% 2% 12% !important
 
     #project-image
       width: 80% !important
@@ -105,4 +84,4 @@ $serif-font: "Garamond", "Times New Roman", serif
       margin-bottom: 3em
 
     #bulletin-board-wrapper
-      font-size: 0.85em
+      font-size: 0.9em
