@@ -27,4 +27,8 @@ class User < ActiveRecord::Base
   def github_url_present?
     github_authorization.url.present?
   end
+
+  def has_no_projects?
+    projects.count == 0
+  end
 end

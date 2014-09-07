@@ -44,6 +44,15 @@
                 %p#project-subtitle= project.subtitle
               = link_to "#", nil do
                 %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " 22"
+
+        - if logged_in? && current_user.can_edit?(@user)
+          - unless current_user.has_no_projects?
+            %li.col-sm-6.col-md-4#project-add-container
+              = render "add_project_button", user: @user, style: nil
+          - else
+            %li.col-xs-12#project-add-container
+              = render "add_project_button", user: @user, style: "margin-top: -10%"
+
       
     #followers.tab-pane.fade
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

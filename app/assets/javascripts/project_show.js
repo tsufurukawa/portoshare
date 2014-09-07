@@ -5,6 +5,7 @@ $(document).ready(function() {
     watch: true,
   });
 
+  // TODO: Either modify or delete this functionality. As is, this code does not work.
   $("#project-show .readmore").on("click", function() {
     alert("hello there");
   });
