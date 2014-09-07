@@ -1,0 +1,11 @@
+#project-detail-new.container-fluid
+  = link_to current_user do
+    %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
+  %h1#new-project-header Create A New Project (More Info)
+
+  = bootstrap_form_for(@project_detail, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
+    = f.text_field :header, placeholder: "ex: Technologies Used"
+    = f.text_area :content, rows: 8, placeholder: "Explain a certain feature, a list of technologies used, or anything specific regarding your application here." 
+    = f.form_group do
+      = f.submit "Create Project", class: "btn btn-primary"
+      / = link_to "Previous", edit_project_path(), class: "btn btn-default"

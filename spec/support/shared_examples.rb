@@ -45,3 +45,21 @@ shared_examples "require owner" do
     expect(flash[:danger]).to be_present
   end
 end
+
+shared_examples "require project to belong to current user" do
+  let(:alice) { Fabricate(:user) }
+
+  before do
+    sets_current_user(alice)
+    @project = Fabricate(:project)
+    action
+  end
+
+  it "sets an error message" do
+    expect(flash[:danger]).to be_present
+  end
+
+  it "redirects to user show page" do
+    expect(response).to redirect_to alice
+  end
+end

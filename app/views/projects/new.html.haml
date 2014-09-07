@@ -1,16 +1,9 @@
 #project-new.container-fluid
-  = link_to @user do
+  = link_to current_user do
     %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
-  %h1#new-project-header Create A New Project
+  %h1#new-project-header Create A New Project (Basic Info)
 
-  = bootstrap_form_for([@user, @project], layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", :html => {:multipart => true}) do |f|
-    / .form-group
-    /   %label.control-label.col-sm-2.col-xs-12(for="user_avatar")Upload your photo
-    /   .col-sm-6.col-xs-6
-    /     = image_tag @user.avatar_url, size: "130x130", id: "user-avatar"
-    /     %input.form-control#user_avatar(name="user[avatar]" type="file")
-    /     = link_to user_path(@user, remove_avatar: true), method: :patch, data: { confirm: "Are you sure you want to delete your profile picture?" } do
-    /       %i.fa.fa-times= "  Remove photo"
+  = bootstrap_form_for(@project, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
     = f.text_field :title, placeholder: "ex: PortoShare"
     = f.text_field :subtitle, placeholder: "ex: Create and share your portfolio"
     = f.url_field :url, label: "Website URL", placeholder: 'ex: http://portoshare.com (must start with "http:// "or "https://")'

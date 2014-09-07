@@ -1,7 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :require_authenticated_user, only: [:new, :create]
-  before_action :set_user, only: [:new, :create]
-  before_action only: [:new, :create] { require_owner(@user.id) }
 
   def index
     @projects = Project.all
@@ -17,21 +15,16 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.user = @user
+    @project.user = current_user
 
     if @project.save
-      flash[:success] = "You have successfully created a new project."
-      redirect_to user_project_path(@user, @project)
+      redirect_to project_details_new_path(@project)
     else
       render :new
     end
   end
 
   private
-
-  def set_user
-    @user = User.find(params[:user_id])
-  end
 
   def project_params
     params.require(:project).permit(:title, :subtitle, :url, :main_description)

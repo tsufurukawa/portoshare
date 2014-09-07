@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
   root to: 'pages#front'
 
-  resources :projects, only: [:index]  
+  resources :projects, only: [:index, :new, :create, :edit]  do
+    get '/details/new', to: 'project_details#new'
+    post '/details', to: 'project_details#create'
+  end
 
   get '/sign_up', to: 'users#new'
 
   resources :users, only: [:show, :create, :edit, :update] do
-    resources :projects, only: [:show, :new, :create]
+    resources :projects, only: [:show]
     resources :authorizations, only: [:new]
-    delete '/unlink_github', to: "authorizations#destroy"
+    resources :project_steps, only: [:index, :show]
+    delete '/unlink_github', to: 'authorizations#destroy'
   end
 
 
@@ -18,4 +22,5 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'authorizations#create'
   get '/auth/failure', to: 'authorizations#failure'
+
 end
