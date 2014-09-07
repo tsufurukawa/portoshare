@@ -12,6 +12,7 @@ class ProjectDetailsController < ApplicationController
     @project_detail.project = project
     
     if @project_detail.save
+      binding.pry
       redirect_to user_project_path(current_user, project)
       flash[:success] = "You've successfully created a new project!"
     else

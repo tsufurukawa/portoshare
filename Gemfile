@@ -20,7 +20,6 @@ gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'octokit'
-gem 'wicked'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'

@@ -29,29 +29,9 @@
           %p#project-main-description= @project.main_description
 
     #project-more-info.row
-      .col-xs-6.col-sm-4
-        = image_tag "/tmp/postit-yellow-380.png", class: "postit"
-        .text-container
-          %h4.more-info-header User Added Information
-          %p.more-info-description= Faker::Lorem.sentences(2).join(' ')
-
-      .col-xs-6.col-sm-4
-        = image_tag "/tmp/postit-orange-380.png", class: "postit"
-        .text-container
-          %h4.more-info-header More User Added Information
-          %p.more-info-description= Faker::Lorem.sentences(12).join(' ')
-
-      .col-xs-6.col-sm-4
-        = image_tag "/tmp/postit-blue-380.png", class: "postit"
-        .text-container
-          %h4.more-info-header More User Added Information
-          %p.more-info-description= Faker::Lorem.sentences(5).join(' ')
-
-      .col-xs-6.col-sm-4
-        = image_tag "/tmp/postit-blue-380.png", class: "postit"
-        .text-container
-          %h4.more-info-header More User Added Information
-          %p.more-info-description= Faker::Lorem.sentences(8).join(' ')
-
-
-//{"data-toggle" => "popover", "title" => "some title", "data-trigger" => "hover", href: "#", "data-placement" => "right"}
+      - @project.project_details.each do |project_detail|
+        .col-xs-6.col-sm-4
+          = image_tag "/tmp/postit-yellow-380.png", class: "postit"
+          .text-container
+            %h4.more-info-header= project_detail.header
+            %p.more-info-description= project_detail.content
