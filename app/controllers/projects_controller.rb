@@ -22,13 +22,11 @@ class ProjectsController < ApplicationController
         flash[:success] = "You have successfully created a new project!!"
         redirect_to user_project_path(current_user, @project)
       else
-        flash[:danger] = "Please fix the following error(s)."
-        render :new
+        display_error_and_render("Please fix the following error(s).")
       end
     rescue ActiveRecord::NestedAttributes::TooManyRecords => e
       @project = Project.new(project_params_without_details)
-      flash.now[:danger] = e.message
-      render :new
+      display_error_and_render(e.message)
     end
   end
 
@@ -41,5 +39,10 @@ class ProjectsController < ApplicationController
 
   def project_params_without_details
     params.require(:project).permit(:title, :subtitle, :url, :main_description)
+  end
+
+  def display_error_and_render(error_msg)
+    flash.now[:danger] = error_msg
+    render :new
   end
 end
