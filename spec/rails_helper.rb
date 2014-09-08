@@ -4,6 +4,10 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
+require 'capybara/rails'
+
+Capybara.server_port = 50924
+Capybara.javascript_driver = :webkit
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!

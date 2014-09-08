@@ -34,6 +34,8 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'webmock'
   gem 'vcr'
+  gem 'capybara'
+  gem 'capybara-webkit'
 end
 
 group :test, :development do
