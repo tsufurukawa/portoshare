@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   root to: 'pages#front'
 
-  resources :projects, only: [:index, :new, :create, :edit]  do
-    get '/details/new', to: 'project_details#new'
-    post '/details', to: 'project_details#create'
-  end
-
+  resources :projects, only: [:index, :new, :create, :edit]
+  
   resources :users, only: [:show, :create, :edit, :update] do
     resources :projects, only: [:show]
     resources :authorizations, only: [:new]

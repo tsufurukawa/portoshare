@@ -1,12 +1,4 @@
 #project-new.container-fluid
   = link_to current_user do
     %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
-  %h1#new-project-header Create A New Project (Basic Info)
-
-  = bootstrap_form_for(@project, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
-    = f.text_field :title, placeholder: "ex: PortoShare"
-    = f.text_field :subtitle, placeholder: "ex: Create and share your portfolio"
-    = f.url_field :url, label: "Website URL", placeholder: 'ex: http://portoshare.com (must start with "http:// "or "https://")'
-    = f.text_area :main_description, rows: "8", placeholder: "Give a brief overview of your project", help: "Maximum 480 characters"
-    = f.form_group do
-      = f.submit "Create Project", class: "btn btn-primary"
+  = render 'form', project: @project

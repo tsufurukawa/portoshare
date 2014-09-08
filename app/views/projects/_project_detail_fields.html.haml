@@ -1,0 +1,6 @@
+.nested-fields
+  = f.text_field :header, placeholder: "ex: Built using TDD from Ground Up"
+  = f.text_area :content, rows: 6, placeholder: "Explain a certain feature, a list of technologies used, or anything specific regarding your project/website here.", help: "Maximum 400 characters"
+  .form-group#remove
+    = link_to_remove_association f do
+      %i.fa.fa-minus-circle.fa-lg.text-danger= " Remove Field"

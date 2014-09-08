@@ -53,8 +53,8 @@ describe ProjectsController do
         expect(Project.first.user).to eq(alice)
       end
 
-      it "redirects to the new project detail path" do
-        expect(response).to redirect_to project_details_new_path(Project.first)
+      it "redirects to the project show path" do
+        expect(response).to redirect_to user_project_path(alice, Project.first)
       end
     end
 
