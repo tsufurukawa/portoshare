@@ -36,6 +36,8 @@ group :test do
   gem 'vcr'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :test, :development do

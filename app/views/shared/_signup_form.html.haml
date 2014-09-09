@@ -2,7 +2,7 @@
   = f.text_field :name, value: ""
   = f.text_field :username, value: ""
   = f.email_field :email, value: ""
-  = f.password_field :password, help: "Must be at least 6 characters long", id: "password_field", value: ""
+  = f.password_field :password, help: "Must be at least 6 characters long", value: ""
   = f.form_group do
     = f.submit "Sign Up", class: "btn btn-primary"
     - if modal
