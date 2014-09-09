@@ -234,7 +234,7 @@ DEPENDENCIES
   carrierwave
   cocoon
   coffee-rails (~> 4.0.0)
-  database_cleaner
+  database_cleaner (~> 1.3.0)
   fabrication
   faker
   figaro

@@ -24,28 +24,30 @@
       = yield
 
       / Sign up form will display as a Bootstrap modal
-      #sign-up-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "sign-up-modal", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog
-          .modal-content
-            .modal-header
-              %button.close{"data-dismiss" => "modal", :type => "button"}
-                %span{"aria-hidden" => "true"} ×
-                %span.sr-only Close
-              %h4#sign-up-modal.modal-title Sign Up Form
-            .modal-body
-              = render "shared/signup_form", user: @user ||= User.new, modal: true
+      - unless logged_in?
+        #sign-up-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "sign-up-modal", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog
+            .modal-content
+              .modal-header
+                %button.close{"data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+                  %span.sr-only Close
+                %h4#sign-up-modal.modal-title Sign Up Form
+              .modal-body
+                = render "shared/signup_form", user: @user ||= User.new, modal: true
 
       / Log in form will display as a Bootstrap modal
-      #log-in-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "sign-up-modal", :role => "dialog", :tabindex => "-1"}
-        .modal-dialog
-          .modal-content
-            .modal-header
-              %button.close{"data-dismiss" => "modal", :type => "button"}
-                %span{"aria-hidden" => "true"} ×
-                %span.sr-only Close
-              %h4#log-in-modal.modal-title Log In Form
-            .modal-body
-              = render "shared/login_form", modal: true
+      - unless logged_in?
+        #log-in-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "sign-up-modal", :role => "dialog", :tabindex => "-1"}
+          .modal-dialog
+            .modal-content
+              .modal-header
+                %button.close{"data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×
+                  %span.sr-only Close
+                %h4#log-in-modal.modal-title Log In Form
+              .modal-body
+                = render "shared/login_form", modal: true
 
 
               
