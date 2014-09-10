@@ -1,28 +1,32 @@
 %h1#new-project-header Create A New Project
 #form-guide.clearfix
   %p 
-    %strong Creating a new project involves two steps:
+    %strong Creating a new project involves three steps:
   %ol 
     %li Fill out the "Basic Info" where all fields are mandatory. 
     %li Optionally fill out the "Detailed Info". This section is meant for you to share any detailed information relevant to your application. You may add <span class="text-danger">up to 5 fields ONLY<span/>.
+    %li Optionally upload an image of your webiste (perhaps a snapshot). To avoid unwanted pixelation, we recommend the image to be no smaller than 600x400.
 
-= bootstrap_form_for(setup(project), layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f|
+= bootstrap_form_for(setup(project), layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", html: { multipart: true }) do |f|
   %ul.nav.nav-tabs{:role => "tablist"}
-    %li.active
+    %li.active#basic-info-tab
       %a{"data-toggle" => "tab", :href => "#basic-info", :role => "tab"} Basic Info
-    %li
+    %li#detailed-info-tab
       %a{"data-toggle" => "tab", :href => "#detailed-info", :role => "tab"} Detailed Info
+    %li#upload-photo-tab
+      %a{"data-toggle" => "tab", :href => "#upload-photo", :role => "tab"} Upload Cover Image    
+
   .tab-content
     #basic-info.tab-pane.active
       %h3 Basic Info (Mandatory)
       = f.text_field :title, placeholder: "ex: PortoShare"
       = f.text_field :subtitle, placeholder: "ex: A website for creating and sharing your web portfolio"
-      = f.url_field :url, label: "Website URL", placeholder: 'ex: http://portoshare.com (must start with "http:// "or "https://")'
+      = f.text_field :url, label: "Website URL", placeholder: 'ex: http://portoshare.com (must start with "http:// "or "https://")'
       = f.text_area :main_description, rows: "8", placeholder: "Give a brief overview of your project", help: "Maximum 480 characters"
       = f.form_group do 
         = link_to "#detailed-info", class: "btn btn-primary", id: "continue-button", data: { toggle: "tab" } do
-          %i.fa.fa-long-arrow-right
           %span Next Page
+          %i.fa.fa-long-arrow-right
 
     #detailed-info.tab-pane
       %h3 Detailed Info (Optional)
@@ -32,8 +36,21 @@
         .links.form-group
           = link_to_add_association f, :project_details do
             %i.fa.fa-plus-circle.fa-lg= " Add Field"
-
         = link_to "#basic-info", class: "btn btn-default", id: "previous-button", data: { toggle: "tab" } do
           %i.fa.fa-long-arrow-left
           %span Previous Page
-        = f.submit "Create Project", class: "btn btn-primary"
+        = link_to "#upload-photo", class: "btn btn-primary", id: "second-continue-button", data: { toggle: "tab" } do
+          %span Next Page
+          %i.fa.fa-long-arrow-right
+
+    #upload-photo.tab-pane
+      %h3 Upload A Cover Image (Optional)
+      .form-group
+        %label.control-label.col-sm-2.col-xs-12(for="cover_image")Upload Cover Image
+        .col-sm-6.col-xs-6
+          = image_tag project.image_url, size: "160x120", id: "project-image"
+          %input.form-control#cover_image(name="project[image]" type="file")
+      = link_to "#detailed-info", class: "btn btn-default", id: "second-previous-button", data: { toggle: "tab" } do
+        %i.fa.fa-long-arrow-left
+        %span Previous Page
+      = f.submit "Create Project", class: "btn btn-primary"

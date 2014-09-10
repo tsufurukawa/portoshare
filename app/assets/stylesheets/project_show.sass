@@ -1,3 +1,4 @@
+$primary-blue-color: #428BCA
 $hover-blue-color: #0066FF
 $serif-font: "Garamond", "Times New Roman", serif
 
@@ -8,10 +9,9 @@ $serif-font: "Garamond", "Times New Roman", serif
     color: $hover-blue-color
 
   #bulletin-board-wrapper
-    background: url("/tmp/retina_wood.png")
-    width: 100%
-    border: 20px solid #78532D
-    padding: 6% 0 4% 0
+    // background: url("/tmp/retina_wood.png")
+    // width: 100%
+    // padding: 3% 5% 4% 5%
 
   #title-container
     text-align: center
@@ -35,49 +35,41 @@ $serif-font: "Garamond", "Times New Roman", serif
   .tag
     font-size: 1.25em
 
-  #project-basic-info
-    margin-bottom: 3em
-    padding-left: 5%
-    padding-right: 5%
 
-  #project-main-description
-    font-family: $serif-font
-    font-size: 1.15em
+  #main-description-text
+    margin-bottom: 2em
+
+  #main-description-header
+    color: $hover-blue-color
+
+  #project-main-description ~ p
+    font-size: 1.2em
 
   #project-image
-    width: 100%
-    border-radius: 10%
-    border: 3px solid black
-    margin-top: 1em
+    width: 90%
 
-  #project-more-info
-    .postit
-      width: 113%
-      height: auto
-      padding: 0
+  .more-info-header
+    font-size: 1.2em
+    color: $primary-blue-color
 
-    .text-container
-      position: absolute
-      width: 100%
-      height: 100%
-      top: 0
-      left: 0
-      padding: 17% 12% 13% 13%
+  .more-info-description ~ p
+    font-size: 1.12em
+    
 
-    .more-info-header
-      font-size: 1.2em
+  #masonry-container
+    // padding-left: 2em
 
-    .more-info-description
-      font-family: $serif-font
-      font-size: 1.1em
+  .item
+    width: 50%
+    padding: 2em 2em 0 2em
 
-@media only screen and (max-width: 768px)
+@media only screen and (max-width: 769px)
   #project-show
     #bulletin-board-wrapper
       border-width: 13px !important
 
     #project-image
-      width: 80% !important
+      width: 60% !important
       display: block
       margin-left: auto
       margin-right: auto

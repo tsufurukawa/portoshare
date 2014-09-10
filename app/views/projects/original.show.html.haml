@@ -21,15 +21,17 @@
         %span.tag
           = link_to "yes"
 
-      #masonry-container
-        .item
+      #project-basic-info.row
+        .col-sm-6
           = image_tag @project.image_url, id: "project-image"
-        .item#main-description-text
-          %h3#main-description-header Main Description
+        .col-sm-6
+          %h3 Project Description
           %p#project-main-description= simple_format(@project.main_description)
 
-        - @project.project_details.each do |project_detail|
-          .item 
-            .text-container
-              %h4.more-info-header= project_detail.header
-              %p.more-info-description= simple_format(project_detail.content)
+    #project-more-info.row
+      - @project.project_details.each do |project_detail|
+        .col-xs-6.col-sm-4
+          = image_tag "/tmp/postit-yellow-380.png", class: "postit"
+          .text-container
+            %h4.more-info-header= project_detail.header
+            %p.more-info-description= simple_format(project_detail.content)

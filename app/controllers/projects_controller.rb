@@ -33,8 +33,8 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :subtitle, :url, :main_description, 
-      project_details_attributes: [:id, :header, :content, :_destroy])
+    params.require(:project).permit(:title, :subtitle, :url, :main_description, :image,
+        project_details_attributes: [:id, :header, :content, :_destroy])
   end
 
   def project_params_without_details

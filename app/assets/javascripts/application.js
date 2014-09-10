@@ -18,5 +18,7 @@
 //= require jquery.localScroll.min.js
 //= require jquery.dotdotdot.min.js
 //= require jquery.locationAutocomplete.js
+//= require masonry.pkgd.min.js
+//= require imagesloaded.pkgd.min.js
 //= require cocoon
 //= require_tree .
