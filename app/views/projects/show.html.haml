@@ -26,10 +26,10 @@
           = image_tag @project.image_url, id: "project-image"
         .item#main-description-text
           %h3#main-description-header Main Description
-          %p#project-main-description= simple_format(@project.main_description)
+          %p#project-main-description= markdown(@project.main_description)
 
         - @project.project_details.each do |project_detail|
           .item 
             .text-container
               %h4.more-info-header= project_detail.header
-              %p.more-info-description= simple_format(project_detail.content)
+              %p.more-info-description= markdown(project_detail.content)

@@ -21,6 +21,8 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'octokit'
 gem 'cocoon'
+gem 'redcarpet'
+gem 'pygments.rb'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
