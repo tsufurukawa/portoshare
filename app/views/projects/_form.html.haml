@@ -4,8 +4,22 @@
     %strong Creating a new project involves three steps:
   %ol 
     %li Fill out the "Basic Info" where all fields are mandatory. 
-    %li Optionally fill out the "Detailed Info". This section is meant for you to share any detailed information relevant to your application. You may add <span class="text-danger">up to 5 fields ONLY<span/>.
-    %li Optionally upload an image of your webiste (perhaps a snapshot). To avoid unwanted pixelation, we recommend the image to be no smaller than 600x400.
+    %li Optionally fill out the "Detailed Info". You may add <span class="text-danger bold">up to 5 fields ONLY<span/>.
+    %li Optionally upload a cover image of your webiste (perhaps a snapshot)
+    %li <span class="text-danger bold">NOTE:</span> The "Main description" under Basic Info and the "Content" fields under Detailed Info supports <span class="bold">Markdown</span> syntax. <span><a class="guide-link" data-toggle="modal" data-target="#markdownHelp">Click here for a quick guide.</a></span>
+
+    #markdownHelp.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "markdownHelpLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            %button.close{"data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+              %span.sr-only Close
+            %h4#markdownHelpLabel.modal-title Markdown Syntax Reference Sheet
+          .modal-body
+            = image_tag "/tmp/markdown-help-original.png", class: "markdown-help-image"
+          .modal-footer
+            %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
 
 = bootstrap_form_for(setup(project), layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10", html: { multipart: true }) do |f|
   %ul.nav.nav-tabs{:role => "tablist"}
@@ -22,7 +36,7 @@
       = f.text_field :title, placeholder: "ex: PortoShare"
       = f.text_field :subtitle, placeholder: "ex: A website for creating and sharing your web portfolio"
       = f.text_field :url, label: "Website URL", placeholder: 'ex: http://portoshare.com (must start with "http:// "or "https://")'
-      = f.text_area :main_description, rows: "8", placeholder: "Give a brief overview of your project", help: "Maximum 480 characters"
+      = f.text_area :main_description, rows: "8", placeholder: "Give a brief overview of your project", help: "Maximum 800 characters"
       = f.form_group do 
         = link_to "#detailed-info", class: "btn btn-primary", id: "continue-button", data: { toggle: "tab" } do
           %span Next Page
