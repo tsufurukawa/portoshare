@@ -179,7 +179,7 @@ describe UsersController do
       end
     end
 
-    context "when 'remove_avatar' parameter is present" do
+    context "for removing user avatar" do
       let(:alice) { Fabricate(:user, avatar: "default_image") }
 
       before do

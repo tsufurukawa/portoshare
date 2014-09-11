@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'pages#front'
 
-  resources :projects, only: [:index, :new, :create, :edit]
+  resources :projects, only: [:index, :new, :create, :edit, :update]
   
   resources :users, only: [:show, :create, :edit, :update] do
     resources :projects, only: [:show]

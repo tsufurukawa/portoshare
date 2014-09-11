@@ -54,6 +54,7 @@ class UsersController < ApplicationController
       flash[:success] = "You have successfully updated your profile."
       redirect_to edit_user_path(@user)
     else
+      flash.now[:danger] = "Pease fix the following error(s)."
       render :edit
     end
   end
@@ -61,7 +62,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :username, :location, :bio, :avatar)
+    params.require(:user).permit(:name, :email, :password, :username, :location, :bio, :avatar, :avatar_cache)
   end
 
   def set_user

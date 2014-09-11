@@ -1,22 +1,24 @@
 $(document).ready(function() {
-  $("#new_project").find("#continue-button").on("click", function() {
-    $("#new_project #detailed-info-tab").addClass("active");
-    $("#new_project #basic-info-tab").removeClass("active");
+  var $form = $("#project-new, #project-edit");
+
+  $form.find("#continue-button").on("click", function() {
+    $form.find("#detailed-info-tab").addClass("active");
+    $form.find("#basic-info-tab").removeClass("active");
   });
 
-  $("#new_project").find("#previous-button").on("click", function() {
-    $("#new_project #basic-info-tab").addClass("active");
-    $("#new_project #detailed-info-tab").removeClass("active");
+  $form.find("#previous-button").on("click", function() {
+    $form.find("#basic-info-tab").addClass("active");
+    $form.find("#detailed-info-tab").removeClass("active");
   });
 
-  $("#new_project").find("#second-continue-button").on("click", function() {
-    $("#new_project #upload-photo-tab").addClass("active");
-    $("#new_project #detailed-info-tab").removeClass("active");
+  $form.find("#second-continue-button").on("click", function() {
+    $form.find("#upload-photo-tab").addClass("active");
+    $form.find("#detailed-info-tab").removeClass("active");
   });
 
-  $("#new_project").find("#second-previous-button").on("click", function() {
-    $("#new_project #detailed-info-tab").addClass("active");
-    $("#new_project #upload-photo-tab").removeClass("active");
+  $form.find("#second-previous-button").on("click", function() {
+    $form.find("#detailed-info-tab").addClass("active");
+    $form.find("#upload-photo-tab").removeClass("active");
   });
 
   $("#project_details")

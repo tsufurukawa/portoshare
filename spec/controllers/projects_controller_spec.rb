@@ -150,4 +150,111 @@ describe ProjectsController do
       end
     end
   end
+
+  describe "GET edit" do
+    it_behaves_like "require authenticated user" do
+      let(:action) { get :edit, id: 1 }
+    end
+
+    it_behaves_like "require project to belong to current user" do
+      let(:action) { get :edit, id: @project.id }
+    end
+
+    it "sets the @project variable" do
+      alice = Fabricate(:user)
+      sets_current_user(alice)
+      project = Fabricate(:project, user: alice)
+      get :edit, id: project.id
+      expect(assigns(:project)).to eq(project)
+    end
+  end
+
+  describe "PATCH update" do
+    it_behaves_like "require authenticated user" do
+      let(:action) { patch :update, id: 1, project: Fabricate.attributes_for(:project) }
+    end
+
+    it_behaves_like "require project to belong to current user" do
+      let(:action) { patch :update, id: @project.id, project: Fabricate.attributes_for(:project) }
+    end
+
+    context "with too many nested attributes (more than 5 'project detail' entries)" do
+      let(:alice) { Fabricate(:user) }
+      let(:project) { Fabricate(:project, user: alice) }
+
+      before do
+        sets_current_user(alice)
+        patch :update, id: project.id, project: Fabricate.attributes_for(:project, title: "new title", 
+          project_details_attributes: { 
+            "0"=>{header: "Header 1", content: "Content 1", _destroy: "false"},
+            "1"=>{header: "Header 2", content: "Content 1", _destroy: "false"},
+            "2"=>{header: "Header 3", content: "Content 1", _destroy: "false"},
+            "3"=>{header: "Header 4", content: "Content 1", _destroy: "false"},
+            "4"=>{header: "Header 5", content: "Content 1", _destroy: "false"},
+            "5"=>{header: "Header 6", content: "Content 1", _destroy: "false"}
+          })
+      end
+
+      it "does not update the project attributes" do
+        expect(project.reload.title).not_to eq("new title")
+        expect(project.reload.project_details).to be_empty
+      end
+
+      it "sets a flash error message" do
+        expect(flash[:danger]).to eq("Maximum 5 records are allowed. Got 6 records instead.")
+      end
+
+      it "renders the edit template" do
+        expect(response).to render_template :edit
+      end
+
+      it "sets the @project variable" do
+        expect(assigns(:project)).to eq(project)
+      end
+    end
+
+    context "with successful validations" do
+      let(:alice) { Fabricate(:user) }
+      let(:project) { Fabricate(:project, user: alice) }
+
+      before do
+        sets_current_user(alice)
+        patch :update, id: project.id, project: Fabricate.attributes_for(:project, title: "new title", 
+          project_details_attributes: { 
+            "0"=>{header: "Header 1", content: "Content 1", _destroy: "false"},
+          })
+      end
+
+      it "updates the project attributes" do
+        expect(project.reload.title).to eq("new title")
+        expect(project.reload.project_details).to be_present
+      end
+
+      it "redirects to project show path" do
+        expect(response).to redirect_to user_project_path(alice, project)
+      end
+    end
+
+    context "with unsuccessful validations" do
+      let(:alice) { Fabricate(:user) }
+      let(:project) { Fabricate(:project, user: alice) }
+
+      before do
+        sets_current_user(alice)
+        patch :update, id: project.id, project: { title: "", subtitle: "new subtitle" }
+      end
+
+      it "does not update the project attributes" do
+        expect(project.reload.subtitle).not_to eq("new subtitle")
+      end
+
+      it "sets an error message" do
+        expect(flash[:danger]).to eq("Please fix the following error(s).")
+      end
+
+      it "renders the edit template" do
+        expect(response).to render_template :edit
+      end
+    end
+  end
 end

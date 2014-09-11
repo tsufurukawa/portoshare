@@ -2,7 +2,7 @@ $form-input-background-color: #EEE
 $primary-blue-color: #428BCA
 $hover-blue-color: #0066FF
 
-#project-new
+#project-new, #project-edit
   max-width: 700px
   background: white
   padding: 3em
@@ -63,18 +63,24 @@ $hover-blue-color: #0066FF
   .bold
     font-weight: bold
 
+  .italic
+    font-style: italic
+
   .guide-link
     cursor: pointer
 
   // Markdown Help Modal
   #markdownHelp
     border-top-radius: 100px
+
     .modal-dialog
       width: 1000px
+
     .markdown-help-image
       display: block
       margin-left: auto
       margin-right: auto
+      
     .modal-header
       background: url("/tmp/green_dust_scratch.png")
       text-align: center

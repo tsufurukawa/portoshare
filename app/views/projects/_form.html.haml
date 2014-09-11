@@ -1,12 +1,12 @@
-%h1#new-project-header Create A New Project
+%h1#new-project-header= project.new_record? ? "Create A New Project" : "Update Your Project"
 #form-guide.clearfix
   %p 
-    %strong Creating a new project involves three steps:
+    %strong Creating or updating a project involves three steps:
   %ol 
-    %li Fill out the "Basic Info" where all fields are mandatory. 
-    %li Optionally fill out the "Detailed Info". You may add <span class="text-danger bold">up to 5 fields ONLY<span/>.
-    %li Optionally upload a cover image of your webiste (perhaps a snapshot)
-    %li <span class="text-danger bold">NOTE:</span> The "Main description" under Basic Info and the "Content" fields under Detailed Info supports <span class="bold">Markdown</span> syntax. <span><a class="guide-link" data-toggle="modal" data-target="#markdownHelp">Click here for a quick guide.</a></span>
+    %li Fill out the <span class="italic">Basic Info</span> where all fields are mandatory. 
+    %li Optionally fill out the <span class="italic">Detailed Info</span>. You may add <span class="text-danger bold">up to 5 fields ONLY<span/>.
+    %li Optionally upload a cover image of your website (perhaps a snapshot).
+    %li <span class="text-danger bold">NOTE:</span> The "Main description" under <span class="italic">Basic Info</span> and the "Content" fields under <span class="italic">Detailed Info</span> supports <span class="bold">Markdown</span> syntax. <span><a class="guide-link" data-toggle="modal" data-target="#markdownHelp">Click here for a quick guide.</a></span>
 
     #markdownHelp.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "markdownHelpLabel", :role => "dialog", :tabindex => "-1"}
       .modal-dialog.modal-lg
@@ -36,7 +36,7 @@
       = f.text_field :title, placeholder: "ex: PortoShare"
       = f.text_field :subtitle, placeholder: "ex: A website for creating and sharing your web portfolio"
       = f.text_field :url, label: "Website URL", placeholder: 'ex: http://portoshare.com (must start with "http:// "or "https://")'
-      = f.text_area :main_description, rows: "8", placeholder: "Give a brief overview of your project", help: "Maximum 800 characters"
+      = f.text_area :main_description, label: "Main Description", rows: "8", placeholder: "Give a brief overview of your project", help: "Maximum 800 characters"
       = f.form_group do 
         = link_to "#detailed-info", class: "btn btn-primary", id: "continue-button", data: { toggle: "tab" } do
           %span Next Page
@@ -63,8 +63,10 @@
         %label.control-label.col-sm-2.col-xs-12(for="cover_image")Upload Cover Image
         .col-sm-6.col-xs-6
           = image_tag project.image_url, size: "160x120", id: "project-image"
+          %p.text-muted Note: should you choose not to upload an image, the above image will be used.
           %input.form-control#cover_image(name="project[image]" type="file")
+          = f.hidden_field :image_cache
       = link_to "#detailed-info", class: "btn btn-default", id: "second-previous-button", data: { toggle: "tab" } do
         %i.fa.fa-long-arrow-left
         %span Previous Page
-      = f.submit "Create Project", class: "btn btn-primary"
+      = f.submit(@project.new_record? ? "Create Project" : "Update Project", class: "btn btn-primary")
