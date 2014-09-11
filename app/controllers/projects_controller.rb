@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
 
       if @project.save
         flash[:success] = "You have successfully created a new project!!"
-        redirect_to user_project_path(current_user, @project)
+        redirect_to @project
       else
         display_error_and_render("Please fix the following error(s).", :new)
       end
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     begin
       if @project.update(project_params)
         flash[:success] = "You have successfully updated your project!!"
-        redirect_to user_project_path(current_user, @project)  
+        redirect_to @project
       else
         display_error_and_render("Please fix the following error(s).", :edit)
       end

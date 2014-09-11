@@ -14,7 +14,7 @@ describe ProjectsController do
     it "sets the @project variable" do
       alice = Fabricate(:user)
       project = Fabricate(:project)
-      get :show, user_id: alice.id, id: project.id
+      get :show, id: project.id
       expect(assigns(:project)).to eq(project)
     end
   end
@@ -111,7 +111,7 @@ describe ProjectsController do
       end
 
       it "redirects to project show path" do
-        expect(response).to redirect_to user_project_path(alice, Project.first)
+        expect(response).to redirect_to Project.first
       end
     end
 
@@ -231,7 +231,7 @@ describe ProjectsController do
       end
 
       it "redirects to project show path" do
-        expect(response).to redirect_to user_project_path(alice, project)
+        expect(response).to redirect_to project
       end
     end
 

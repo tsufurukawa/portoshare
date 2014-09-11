@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   root to: 'pages#front'
 
-  resources :projects, only: [:index, :new, :create, :edit, :update]
+  resources :projects, only: [:index, :show, :new, :create, :edit, :update]
   
   resources :users, only: [:show, :create, :edit, :update] do
-    resources :projects, only: [:show]
     resources :authorizations, only: [:new]
     delete '/unlink_github', to: 'authorizations#destroy'
   end
