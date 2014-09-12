@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'authorizations#create'
   get '/auth/failure', to: 'authorizations#failure'
+
+  resources :tags, only: [:index]
 end

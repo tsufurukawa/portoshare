@@ -65,7 +65,9 @@
           = image_tag project.image_url, size: "160x120", id: "project-image"
           %input.form-control#cover_image(name="project[image]" type="file")
           = f.hidden_field :image_cache
-      = f.text_field :tag_list, label: "Tags", placeholder: "ex: food, blog, ruby-on-rails", help: raw("Note: You may add <span class='text-danger bold'>up to 5 tags only.</span> Separate the tags with a comma.")
+    
+      = f.text_field :tag_list, label: "Tags", placeholder: "ex: food, blog, ruby-on-rails", help: raw("Note: You may add <span class='text-danger bold'>up to 5 tags only.</span> Please do not make duplicate tags."), data: {load: project.tag_list_items}
+
       = link_to "#detailed-info", class: "btn btn-default", id: "second-previous-button", data: { toggle: "tab" } do
         %i.fa.fa-long-arrow-left
         %span Previous Page

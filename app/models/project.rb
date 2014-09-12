@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_writer :tag_list
+  attr_accessor :tag_list
 
   belongs_to :user
   has_many :project_details, dependent: :destroy
@@ -19,24 +19,19 @@ class Project < ActiveRecord::Base
   before_save :save_tags
 
   def validate_tag_list
-    errors.add(:tag_list, "too many tags (5 is the maximum allowed)") if @tag_list && tag_item_count > 5
+    errors.add(:tag_list, "too many tags (5 is the maximum allowed)") if tag_list && Tag.item_count(tag_list) > 5
   end
 
-  def tag_list
-    @tag_list || tags.pluck(:name).join(", ") # => ex: "ruby, python, css"
+  # tag_list => ex: "1, 3, 10, <<<new-tag>>>"
+  def tag_list_items
+    tag_list.present? ? Tag.find(Tag.ids_from_tokens(tag_list, self)) : tags
   end
 
   def save_tags
-    if @tag_list
-      self.tags = @tag_list.split(",").map do |name|
-        Tag.where(name: name.strip).first_or_create
-      end
+    if tag_list.present?
+      self.tag_ids = Tag.ids_from_tokens(tag_list, self) 
     end
-  end
-
-  private
-
-  def tag_item_count
-    tag_list.split(",").count
+  rescue ActiveRecord::RecordInvalid  => e
+    errors.add(:tags, "#{e.message}")
   end
 end

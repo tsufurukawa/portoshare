@@ -4,11 +4,8 @@ ruby '2.1.1'
 gem 'rails', '4.1.1'
 gem 'haml-rails'
 gem 'pg'
-gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'bcrypt'
@@ -23,6 +20,12 @@ gem 'octokit'
 gem 'cocoon'
 gem 'redcarpet'
 gem 'pygments.rb'
+
+group :assets do
+  gem 'sass-rails', '~> 4.0.3'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'uglifier', '>= 1.3.0'
+end
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
