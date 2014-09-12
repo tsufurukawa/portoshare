@@ -18,13 +18,7 @@ describe Project do
     let!(:tag2) { Fabricate(:tag, id: 2, name: "tag2") }
     let!(:tag3) { Fabricate(:tag, id: 3, name: "tag3") }
 
-    it "returns one tag for a one item string" do
-      project.tag_list = "1"
-      project.save_tags
-      expect(project.tags.first.name).to eq("tag1")
-    end
-
-    it "returns multiple tags for multiple item string" do
+    it "sets the tags for the project" do
       project.tag_list = "1, 2  , 3"
       project.save_tags
       expect(project.tags.pluck(:name)).to eq(["tag1", "tag2", "tag3"])
