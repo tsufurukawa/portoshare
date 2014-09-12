@@ -5,7 +5,7 @@
   %ol 
     %li Fill out the <span class="italic">Basic Info</span> where all fields are mandatory. 
     %li Optionally fill out the <span class="italic">Detailed Info</span>. You may add <span class="text-danger bold">up to 5 fields ONLY<span/>.
-    %li Optionally upload a cover image of your website (perhaps a snapshot).
+    %li Optionally upload a cover image and add tags relevant to your website.
     %li <span class="text-danger bold">NOTE:</span> The "Main description" under <span class="italic">Basic Info</span> and the "Content" fields under <span class="italic">Detailed Info</span> supports <span class="bold">Markdown</span> syntax. <span><a class="guide-link" data-toggle="modal" data-target="#markdownHelp">Click here for a quick guide.</a></span>
 
     #markdownHelp.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "markdownHelpLabel", :role => "dialog", :tabindex => "-1"}
@@ -28,7 +28,7 @@
     %li#detailed-info-tab
       %a{"data-toggle" => "tab", :href => "#detailed-info", :role => "tab"} Detailed Info
     %li#upload-photo-tab
-      %a{"data-toggle" => "tab", :href => "#upload-photo", :role => "tab"} Upload Cover Image    
+      %a{"data-toggle" => "tab", :href => "#upload-photo", :role => "tab"} Cover Image and Tags 
 
   .tab-content
     #basic-info.tab-pane.active
@@ -58,14 +58,14 @@
           %i.fa.fa-long-arrow-right
 
     #upload-photo.tab-pane
-      %h3 Upload A Cover Image (Optional)
+      %h3 Cover Image and Tags (Optional)
       .form-group
         %label.control-label.col-sm-2.col-xs-12(for="cover_image")Upload Cover Image
         .col-sm-6.col-xs-6
           = image_tag project.image_url, size: "160x120", id: "project-image"
-          %p.text-muted Note: should you choose not to upload an image, the above image will be used.
           %input.form-control#cover_image(name="project[image]" type="file")
           = f.hidden_field :image_cache
+      = f.text_field :tag_list, label: "Tags", placeholder: "ex: food, blog, ruby-on-rails", help: raw("Note: You may add <span class='text-danger bold'>up to 5 tags only.</span> Separate the tags with a comma.")
       = link_to "#detailed-info", class: "btn btn-default", id: "second-previous-button", data: { toggle: "tab" } do
         %i.fa.fa-long-arrow-left
         %span Previous Page

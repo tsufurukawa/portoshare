@@ -9,17 +9,7 @@
           %span
             = link_to @project.user.name, @project.user, class: "hello"
         %i.fa.fa-tags.fa-lg
-        %span.tag
-          = link_to "hello"
-          %span ,
-        %span.tag
-          = link_to "another"
-          %span ,
-        %span.tag
-          = link_to "another tag"
-          %span ,
-        %span.tag
-          = link_to "yes"
+        %span= @project.tag_list
 
       #masonry-container
         .item

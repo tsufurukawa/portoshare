@@ -48,12 +48,12 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:title, :subtitle, :url, :main_description, :image, :image_cache,
+    params.require(:project).permit(:title, :subtitle, :url, :main_description, :image, :image_cache, :tag_list,
       project_details_attributes: [:id, :header, :content, :_destroy])
   end
 
   def project_params_without_details
-    params.require(:project).permit(:title, :subtitle, :url, :main_description, :image, :image_cache)
+    params.require(:project).permit(:title, :subtitle, :url, :main_description, :image, :image_cache, :tag_list)
   end
 
   def set_project
