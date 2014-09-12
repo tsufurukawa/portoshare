@@ -3,7 +3,7 @@ class TagsController < ApplicationController
     @tags = Tag.order(:name)
     respond_to do |format|
       format.html
-      format.json { render json: @tags.tokens(params[:q].strip.downcase) }
+      format.json { render json: @tags.tokens(params[:q]) }
       # params[:q] is the query parameter from tokenInput
     end
   end

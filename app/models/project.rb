@@ -28,10 +28,6 @@ class Project < ActiveRecord::Base
   end
 
   def save_tags
-    if tag_list.present?
-      self.tag_ids = Tag.ids_from_tokens(tag_list, self) 
-    end
-  rescue ActiveRecord::RecordInvalid  => e # duplicate tags
-    errors.add(:tags, "#{e.message}")
+    self.tag_ids = Tag.ids_from_tokens(tag_list, self) if tag_list.present?
   end
 end

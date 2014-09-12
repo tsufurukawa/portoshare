@@ -5,4 +5,8 @@ $(document).ready(function() {
     preventDuplicates: true,
     tokenLimit: 5
   });
+
+  if($("#project_errors").data('error')) {
+    $("#project_details").find(".form-group").addClass('has-error');
+  }
 });

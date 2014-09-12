@@ -18,15 +18,15 @@ class ProjectsController < ApplicationController
       @project = Project.new(project_params)
       @project.user = current_user
 
-      if @project.save && @project.errors.empty?
+      if @project.save
         flash[:success] = "You have successfully created a new project!!"
         redirect_to @project
       else
-        error_message = tag_validation_error(@project) || "Please fix the following error(s)."
-        display_error_and_render(error_message, :new)
+        display_error_and_render("Please fix the following error(s).", :new)
       end
     rescue ActiveRecord::NestedAttributes::TooManyRecords => e
       @project = Project.new(project_params_without_details)
+      @project.errors.add(:project_detail_attributes, e.message)
       display_error_and_render(e.message, :new)
     end
   end
@@ -35,14 +35,14 @@ class ProjectsController < ApplicationController
 
   def update
     begin
-      if @project.update(project_params) && @project.errors.empty?
+      if @project.update(project_params)
         flash[:success] = "You have successfully updated your project!!"
         redirect_to @project
       else
-        error_message = tag_validation_error(@project) || "Please fix the following error(s)."
-        display_error_and_render(error_message, :edit)
+        display_error_and_render("Please fix the following error(s).", :edit)
       end
     rescue ActiveRecord::NestedAttributes::TooManyRecords => e
+      @project.errors.add(:project_detail_attributes, e.message)
       display_error_and_render(e.message, :edit)
     end
   end
@@ -69,9 +69,5 @@ class ProjectsController < ApplicationController
 
   def require_project_owner
     access_denied unless @project.user == current_user
-  end
-
-  def tag_validation_error(project)
-    "Validation error. Please do not make duplicate tags." if project.errors.messages[:tags].present?
   end
 end

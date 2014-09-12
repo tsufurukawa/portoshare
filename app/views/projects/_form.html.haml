@@ -45,6 +45,7 @@
     #detailed-info.tab-pane
       %h3 Detailed Info (Optional)
       #project_details
+        = f.hidden_field :errors, data: { error: @project.errors.messages[:project_detail_attributes].present? }, value: ""
         = f.fields_for(:project_details) do |project_detail|
           = render 'project_detail_fields', f: project_detail
         .links.form-group
