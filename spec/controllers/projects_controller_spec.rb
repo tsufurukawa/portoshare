@@ -2,11 +2,17 @@ require 'rails_helper'
 
 describe ProjectsController do
   describe "GET index" do
-    it "sets the @projects variable" do
-      project1 = Fabricate(:project)
-      project2 = Fabricate(:project)
+    it "sets the @projects variable ordered reverse chronologically by 'updated_at'" do
+      project1 = Fabricate(:project, updated_at: 3.days.ago)
+      project2 = Fabricate(:project, updated_at: 2.days.ago)
       get :index
-      expect(assigns(:projects)).to eq([project1, project2])
+      expect(assigns(:projects)).to eq([project2, project1])
+    end
+
+    it "sets the @project variable by returning the first 20 records" do
+      21.times { Fabricate(:project) }
+      get :index
+      expect(assigns(:projects).count).to eq(20)
     end
   end
 

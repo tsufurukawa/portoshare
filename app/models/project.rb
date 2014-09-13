@@ -31,4 +31,8 @@ class Project < ActiveRecord::Base
   def save_tags
     self.tag_ids = Tag.ids_from_tokens(tag_list, self) if tag_list.present?
   end
+
+  def self.tagged_with(params_tag_name)
+    Tag.find_by_name(params_tag_name).try(:projects)
+  end
 end

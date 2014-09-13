@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'authorizations#failure'
 
   resources :tags, only: [:index]
+  get '/tags/:tag', to: 'tags#show', as: :tag
 end
