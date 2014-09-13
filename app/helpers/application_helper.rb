@@ -18,4 +18,8 @@ module ApplicationHelper
 
     find_and_preserve(Redcarpet::Markdown.new(renderer, extensions).render(text)).html_safe
   end
+
+  def format_time(time)  # 2014-05-08 06:52:32 => 05/08/2014
+    time.strftime("%m/%d/%Y")          
+  end
 end

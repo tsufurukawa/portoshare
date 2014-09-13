@@ -1,10 +1,29 @@
-#project-index.container
+#project-index.container-fluid
   .row
     - @projects.each do |project|
-      %li.col-sm-6.col-md-4
-        .thumbnail
-          = link_to project, nil do
-            = image_tag "http://lorempixel.com/500/400" # TODO: change to project.image.url
-          .caption
-            %h3= project.title
-            %p a mankljads;lkfjadsl;k fjdsakljfdsl;kfjdsl;kfjdsal;kfjdsal;kfjdsa ;lfdk dsl;fkjdsflkds jfl;kdasjf;lkdsafj;ldksjfdlsk;jdslkfjds;flkjd s;flkjasd; lfkdjsa;flkaj dsl;fkjadslk;j;
+      .col-sm-8.col-sm-offset-1.col-xs-12
+        .row.project-container
+          .thumbnail.col-sm-2.col-xs-2
+            = link_to project, nil do
+              = image_tag "http://lorempixel.com/500/400" # TODO: change to project.image.url
+            .caption
+              %p.created-at.text-muted= format_time(project.updated_at)
+              %p.creator= link_to project.user.username, project.user
+
+          .col-sm-10.main-content.col-xs-10
+            .top-header.clearfix    
+              = link_to project.user, nil do
+                = image_tag project.user_avatar.thumb.url, width: 35, heigth: 35, class: "user-avatar"
+              .header-and-url
+                %h1.project-header= link_to project.title, project
+                %p.url= link_to project.url, project.url
+            %p.main-description= markdown(project.main_description)
+
+        = link_to "#", class: "voting-thumb" do
+          %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " 22"
+        - if project.tags.any?
+          .tag-container
+            %i.fa.fa-tags.fa-lg
+            %span.tag= display_tags(project)
+
+

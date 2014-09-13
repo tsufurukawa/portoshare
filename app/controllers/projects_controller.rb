@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_action :require_project_owner, only: [:edit, :update]
 
   def index
-    @projects = Project.all
+    @projects = Project.order(updated_at: :desc).where(user: current_user)
   end
 
   def show; end

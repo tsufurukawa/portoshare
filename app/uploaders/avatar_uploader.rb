@@ -4,6 +4,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   process :resize_to_fill => [170, 170]
 
+  version :thumb do
+    process :resize_to_fill => [35, 35]
+  end
+
   # default directory where uploaded files are stored (not for production / staging)
   def store_dir
     if Rails.env.test?

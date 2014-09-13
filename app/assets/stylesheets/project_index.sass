@@ -1,22 +1,93 @@
+$primary-blue-color: #428BCA
+$hover-blue-color: #0066FF
+$project-container-margin-bottom: 1em
+$secondary-blue-color: #5bc0de
+
 #project-index
+  max-width: 1170px
   padding-top: 2%
 
-  li
-    list-style: none
+  .project-container
+    background: white
+    margin-bottom: $project-container-margin-bottom
+    position: relative
+
+  .thumbnail
+    border: none
+    padding-top: 0
+    margin-bottom: 0
+
+  .project-header
+    font-size: 1.3em
+    color: $primary-blue-color
+    margin-top: 0
+    margin-bottom: 0
+
+  .header-and-url
+    display: inline-block
+    float: left
 
   .caption
-    height: 80px
-    padding-top: 0
+    position: relative
+    padding-bottom: 1.5em
 
-    h3
-      font-size: 1.2em
+  .creator
+    font-size: 1em
+    margin-bottom: 0
 
-    p
-      font-size: 1em
+  .main-content
+    padding-left: 1em
+    padding-right: 0
 
-@media screen and (max-width: 768px)
-  #project-index
-    .thumbnail
-      width: 350px
-      margin-left: auto
-      margin-right: auto
+  .top-header
+    background: url("/tmp/green_dust_scratch.png")
+    padding: 0.4em 0.3em 0 0.3em
+    margin-bottom: 0.4em
+
+  .user-avatar
+    float: left
+    margin-right: 0.5em
+
+  .url
+    margin-bottom: 0
+
+  .created-at
+    font-size: 0.8em
+    margin-bottom: 0
+
+  .main-description
+    margin-bottom: 0
+
+  .main-description ~ *
+    padding-right: 0.5em
+
+  .main-content *:last-child
+    padding-bottom: 0.2em
+
+  .fa-thumbs-o-up
+    font-size: 1.4em
+    position: absolute
+    top: -20px
+    left: -20px
+    padding: 10px
+    background: $secondary-blue-color
+    color: white
+    border-radius: 100%
+
+  .fa-thumbs-o-up:hover
+    background: $primary-blue-color
+    font-size: 1.6em
+
+  .tag-container
+    font-size: 0.9em
+    position: absolute
+    bottom: 0.2em
+    right: 0.5em
+    margin-bottom: $project-container-margin-bottom
+
+// @media screen and (max-width: 768px)
+//   #project-index
+//     .thumbnail
+//       width: 200px
+//       margin-left: auto
+//       margin-right: auto

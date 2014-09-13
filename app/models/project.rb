@@ -15,8 +15,9 @@ class Project < ActiveRecord::Base
     message: "invalid url format"
   
   mount_uploader :image, ImageUploader
-
   before_save :save_tags
+
+  delegate :avatar, to: :user, prefix: true
 
   def validate_tag_list
     errors.add(:tag_list, "too many tags (5 is the maximum allowed)") if tag_list && Tag.item_count(tag_list) > 5
