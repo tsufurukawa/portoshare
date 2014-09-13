@@ -20,6 +20,7 @@ gem 'octokit'
 gem 'cocoon'
 gem 'redcarpet'
 gem 'pygments.rb'
+gem 'kaminari'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.3'

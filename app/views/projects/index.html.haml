@@ -1,6 +1,11 @@
 #project-index.container-fluid
   .row
-    %h1#main-header.col-sm-8.col-sm-offset-1.col-xs-12 Recent Projects
+    %h1#main-header.col-sm-8.col-sm-offset-1.col-xs-12
+      - if @show_tag
+        %i.fa.fa-tags= " Tag: #{@tag_name}"
+      - else
+        Recent Projects
+
     - @projects.each do |project|
       .col-sm-8.col-sm-offset-1.col-xs-12
         .row.project-container
@@ -26,5 +31,9 @@
           .tag-container
             %i.fa.fa-tags.fa-lg
             %span.tag= display_tags(project)
+
+  #pagination-bar.col-sm-8.col-sm-offset-1.col-xs-12
+    = paginate(@projects, window: 2, left: 1)
+
 
 

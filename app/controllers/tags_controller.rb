@@ -10,7 +10,9 @@ class TagsController < ApplicationController
   end
 
   def show
-    @projects = Project.tagged_with(params[:tag]).limit(20)
+    @projects = Project.tagged_with(params[:tag]).page(params[:page])
+    @tag_name = params[:tag]
+    @show_tag = true
     render 'projects/index'
   end
 end

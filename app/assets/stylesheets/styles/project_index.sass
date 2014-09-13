@@ -1,9 +1,16 @@
+// variables
+$primary-blue-color: #428BCA
+$secondary-blue-color: #5bc0de
+$project-container-margin-bottom: 1em
+
 #project-index
   max-width: 1170px
-  padding-top: 2%
 
   #main-header
-    @extend .main-header
+    font-size: 2em
+    color: $primary-blue-color
+    margin-top: 0
+    margin-bottom: 1.3em
 
   .project-container
     background: white
@@ -82,6 +89,9 @@
     bottom: 0.2em
     right: 0.5em
     margin-bottom: $project-container-margin-bottom
+
+  #pagination-bar
+    margin-bottom: 5em
 
 // @media screen and (max-width: 768px)
 //   #project-index
