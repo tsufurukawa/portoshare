@@ -9,10 +9,10 @@ describe ProjectsController do
       expect(assigns(:projects)).to eq([project2, project1])
     end
 
-    it "sets the @project variable by returning the first 20 records" do
-      21.times { Fabricate(:project) }
+    it "sets the @project variable by returning the first 8 records" do
+      10.times { Fabricate(:project) }
       get :index
-      expect(assigns(:projects).count).to eq(20)
+      expect(assigns(:projects).count).to eq(8)
     end
   end
 

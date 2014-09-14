@@ -19,6 +19,7 @@
 //= require jquery.dotdotdot.min.js
 //= require jquery.locationAutocomplete.js
 //= require jquery.tokeninput.js
+//= require jquery.infinitescroll.min.js
 //= require masonry.pkgd.min.js
 //= require imagesloaded.pkgd.min.js
 //= require cocoon
