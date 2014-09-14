@@ -21,6 +21,7 @@ gem 'cocoon'
 gem 'redcarpet'
 gem 'pygments.rb'
 gem 'kaminari'
+gem 'pg_search'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.3'

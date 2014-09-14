@@ -1,7 +1,7 @@
 // variables
 $primary-blue-color: #428BCA
 $secondary-blue-color: #5bc0de
-$project-container-margin-bottom: 1em
+$hover-blue-color: #0066FF
 
 #project-index
   max-width: 1170px
@@ -14,7 +14,7 @@ $project-container-margin-bottom: 1em
 
   .project-container
     background: white
-    margin-bottom: $project-container-margin-bottom
+    margin-bottom: 1em
     position: relative
 
   .thumbnail
@@ -24,7 +24,6 @@ $project-container-margin-bottom: 1em
 
   .project-header
     font-size: 1.3em
-    color: $primary-blue-color
     margin-top: 0
     margin-bottom: 0
 
@@ -41,7 +40,7 @@ $project-container-margin-bottom: 1em
     margin-bottom: 0
 
   .main-content
-    padding-left: 1em
+    padding-left: 0.5em
     padding-right: 0
 
   .top-header
@@ -59,6 +58,12 @@ $project-container-margin-bottom: 1em
   .created-at
     font-size: 0.8em
     margin-bottom: 0
+
+  .project-subheader
+    margin-top: 0.4em
+    font-size: 1.1em
+    margin-bottom: 0.2em
+    color: $primary-blue-color
 
   .main-description
     margin-bottom: 0
@@ -86,12 +91,41 @@ $project-container-margin-bottom: 1em
   .tag-container
     font-size: 0.9em
     position: absolute
-    bottom: 0.2em
+    bottom: 0
     right: 0.5em
-    margin-bottom: $project-container-margin-bottom
 
   #pagination-bar
-    margin-bottom: 5em
+    margin-bottom: 8em
+
+  #search-form
+    position: fixed
+    top: 140px
+    right: 0
+
+  .input-group-addon
+    background: $primary-blue-color
+
+  .fa-search
+    color: white
+
+  #query
+    border-radius: 0
+
+  // infinite scroll styling
+  .msgText
+    font-size: 1.2em
+    font-style: italic
+
+  .progress
+    width: 50%
+    margin-left: auto
+    margin-right: auto
+
+  .finishedMsg
+    font-size: 1.2em
+    text-align: center
+
+
 
 // @media screen and (max-width: 768px)
 //   #project-index

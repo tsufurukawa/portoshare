@@ -1,4 +1,4 @@
-.col-sm-8.col-sm-offset-1.col-xs-12.project
+.project
   .row.project-container
     .thumbnail.col-sm-2.col-xs-2
       = link_to project, nil do
@@ -12,13 +12,16 @@
         = link_to project.user, nil do
           = image_tag project.user_avatar.thumb.url, width: 35, heigth: 35, class: "user-avatar"
         .header-and-url
-          %h2.project-header= link_to project.title, project
+          %h2.project-header= link_to project.title.titleize, project
           %p.url= link_to project.url, project.url
+      %h3.project-subheader= project.subtitle
       %p.main-description= markdown(project.main_description)
 
-  = link_to "#", class: "voting-thumb" do
-    %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " 22"
-  - if project.tags.any?
-    .tag-container
-      %i.fa.fa-tags.fa-lg
-      %span.tag= display_tags(project)
+    = link_to "#", class: "voting-thumb" do
+      %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " 22"
+
+    - if project.tags.any?
+      .tag-container
+        %i.fa.fa-tags.fa-lg
+        %span.tag= display_tags(project)
+

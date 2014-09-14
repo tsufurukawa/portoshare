@@ -1,4 +1,9 @@
 class Project < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :search, against: [:title, :subtitle, :main_description], 
+    using: { tsearch: { dictionary: "english", prefix: true }},
+    associated_against: { tags: :name }
+
   attr_accessor :tag_list
 
   belongs_to :user
@@ -32,7 +37,11 @@ class Project < ActiveRecord::Base
     self.tag_ids = Tag.ids_from_tokens(tag_list, self) if tag_list.present?
   end
 
-  def self.tagged_with(params_tag_name)
-    Tag.find_by_name(params_tag_name).projects.order(updated_at: :desc)
+  def self.tagged_with(tag_name_params)
+    Tag.find_by_name(tag_name_params).projects.order(updated_at: :desc)
+  end
+
+  def self.text_search(query_params)
+    query_params.present? ? search(query_params) : all
   end
 end

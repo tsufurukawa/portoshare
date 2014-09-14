@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root to: 'pages#front'
 
-  resources :projects, only: [:index, :show, :new, :create, :edit, :update]
+  resources :projects, except: [:destroy] do
+    collection do
+      get :search, to: "search#index", as: :search
+    end
+  end
   
   resources :users, only: [:show, :create, :edit, :update] do
     resources :authorizations, only: [:new]

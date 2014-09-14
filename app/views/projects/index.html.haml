@@ -1,15 +1,22 @@
 #project-index.container-fluid
   .row#projects
-    %h1#main-header.col-sm-8.col-sm-offset-1.col-xs-12
-      - if @show_tag
-        %i.fa.fa-tags= " Tag: #{@tag_name}"
-      - else
-        Recent Projects
-    .page
-      = render @projects
+    .col-sm-8.col-sm-offset-1.col-xs-12
+      %h1#main-header
+        - if @show_tag
+          %i.fa.fa-tags= " Tag: #{@tag_name}"
+        - elsif @no_match_msg
+          %p= "No matches. Please try a different search keyword."
+        - else
+          Projects
+      .page
+        = render @projects
 
-  #pagination-bar.col-sm-8.col-sm-offset-1.col-xs-12
-    = paginate(@projects, window: 2, left: 1)
+      #pagination-bar
+        = paginate(@projects, window: 2, left: 1)
 
-
-
+    .col-sm-3#search-form
+      = bootstrap_form_tag url: '/projects/search', html: { method: :get } do |f|
+        .input-group
+          = f.text_field :query, hide_label: true, placeholder: "Search"
+          %span.input-group-addon
+            %i.fa.fa-search
