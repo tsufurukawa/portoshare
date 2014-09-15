@@ -74,6 +74,11 @@ class ProjectsController < ApplicationController
   end
 
   def sort_column
-    params[:sort] = ["title", "subtitle", "updated_at desc"].include?(params[:sort]) ? params[:sort] : "updated_at desc"
+    params[:sort] = 
+      if ["title", "subtitle", "updated_at desc", "votes_count desc"].include?(params[:sort])
+        params[:sort]
+      else
+        "updated_at desc"
+      end
   end
 end

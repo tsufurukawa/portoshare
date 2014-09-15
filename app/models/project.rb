@@ -45,8 +45,4 @@ class Project < ActiveRecord::Base
   def self.text_search(query_params)
     query_params.present? ? search(query_params) : all
   end
-
-  def total_votes
-    votes.count
-  end
 end
