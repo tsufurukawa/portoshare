@@ -1,10 +1,12 @@
 class ProjectsController < ApplicationController
+  helper_method :sort_column, :page_number
   before_action :require_authenticated_user, only: [:new, :create, :edit, :update]
   before_action :set_project, only: [:show, :edit, :update]
   before_action :require_project_owner, only: [:edit, :update]
 
   def index
-    @projects = Project.order(updated_at: :desc).page(params[:page])
+    @projects = Project.order(sort_column).text_search(params[:query]).page(params[:page])
+    @no_match_msg = @projects.blank?
   end
 
   def show; end
@@ -69,5 +71,9 @@ class ProjectsController < ApplicationController
 
   def require_project_owner
     access_denied unless @project.user == current_user
+  end
+
+  def sort_column
+    params[:sort] = ["title", "subtitle", "updated_at desc"].include?(params[:sort]) ? params[:sort] : "updated_at desc"
   end
 end

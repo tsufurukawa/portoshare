@@ -12,7 +12,7 @@
         = link_to project.user, nil do
           = image_tag project.user_avatar.thumb.url, width: 35, heigth: 35, class: "user-avatar"
         .header-and-url
-          %h2.project-header= link_to project.title.titleize, project
+          %h2.project-header= link_to project.title, project
           %p.url= link_to project.url, project.url
       %h3.project-subheader= project.subtitle
       %p.main-description= markdown(project.main_description)

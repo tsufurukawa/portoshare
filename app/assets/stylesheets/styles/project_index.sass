@@ -2,6 +2,7 @@
 $primary-blue-color: #428BCA
 $secondary-blue-color: #5bc0de
 $hover-blue-color: #0066FF
+$form-input-background-color: #EEE
 
 #project-index
   max-width: 1170px
@@ -99,7 +100,7 @@ $hover-blue-color: #0066FF
 
   #search-form
     position: fixed
-    top: 140px
+    top: 180px
     right: 0
 
   .input-group-addon
@@ -110,6 +111,14 @@ $hover-blue-color: #0066FF
 
   #query
     border-radius: 0
+
+  #sort-sidebar
+    margin-top: 1em
+    background: white
+    border: 2px solid $primary-blue-color
+
+    .active a
+      border-radius: 0
 
   // infinite scroll styling
   .msgText

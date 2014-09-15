@@ -38,7 +38,7 @@ class Project < ActiveRecord::Base
   end
 
   def self.tagged_with(tag_name_params)
-    Tag.find_by_name(tag_name_params).projects.order(updated_at: :desc)
+    Tag.find_by_name(tag_name_params).projects
   end
 
   def self.text_search(query_params)

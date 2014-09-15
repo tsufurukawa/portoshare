@@ -20,6 +20,11 @@ module ApplicationHelper
   end
 
   def format_time(time)  # 2014-05-08 06:52:32 => 05/08/2014
-    time.strftime("%m/%d/%Y")          
+    time.strftime("%m/%d/%Y %l:%M%P")          
+  end
+
+  def sortable_link(name, column)
+    css_class = column == sort_column ? "active" : nil
+    raw("<li class=\"#{css_class}\">#{link_to name, params.merge(sort: column, page: nil), class: 'sort-link'}</li>")
   end
 end
