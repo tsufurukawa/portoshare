@@ -41,7 +41,7 @@ $form-input-background-color: #EEE
     margin-bottom: 0
 
   .main-content
-    padding-left: 0.5em
+    padding-left: 0.6em
     padding-right: 0
 
   .top-header
@@ -103,6 +103,9 @@ $form-input-background-color: #EEE
     top: 180px
     right: 0
 
+  .input-group
+    z-index: 0
+
   .input-group-addon
     background: $primary-blue-color
 
@@ -135,10 +138,17 @@ $form-input-background-color: #EEE
     text-align: center
 
 
+@media screen and (max-width: 767px)
+  #project-index
+    #projects
+      width: 95%
+      margin-left: auto
+      margin-right: auto
+      font-size: 0.9em
 
-// @media screen and (max-width: 768px)
-//   #project-index
-//     .thumbnail
-//       width: 200px
-//       margin-left: auto
-//       margin-right: auto
+    #search-form
+      position: static
+      width: 70%
+      float: right
+      margin-bottom: 1em
+

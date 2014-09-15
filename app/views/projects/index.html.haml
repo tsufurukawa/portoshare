@@ -1,5 +1,17 @@
 #project-index.container-fluid
   .row#projects
+    .col-sm-3#search-form
+      = bootstrap_form_tag url: projects_path, html: { method: :get } do |f|
+        .input-group
+          = f.text_field :query, hide_label: true, placeholder: "Search", value: params[:query]
+          = hidden_field_tag :sort, params[:sort]
+          %span.input-group-addon
+            %i.fa.fa-search
+      %ul.nav.nav-pills.nav-stacked#sort-sidebar.hidden-xs{:role => "tablist"}
+        = sortable_link("Most Recent", "updated_at desc" )
+        = sortable_link("Title ", "title")
+        = sortable_link("Subtitle", "subtitle")
+
     .col-sm-8.col-sm-offset-1.col-xs-12
       %h1#main-header
         - if @show_tag
@@ -14,14 +26,3 @@
       #pagination-bar
         = paginate(@projects, window: 2, left: 1)
 
-    .col-sm-3#search-form
-      = bootstrap_form_tag url: projects_path, html: { method: :get } do |f|
-        .input-group
-          = f.text_field :query, hide_label: true, placeholder: "Search", value: params[:query]
-          = hidden_field_tag :sort, params[:sort]
-          %span.input-group-addon
-            %i.fa.fa-search
-      %ul.nav.nav-pills.nav-stacked#sort-sidebar{:role => "tablist"}
-        = sortable_link("Most Recent", "updated_at desc" )
-        = sortable_link("Title ", "title")
-        = sortable_link("Subtitle", "subtitle")
