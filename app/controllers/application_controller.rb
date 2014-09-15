@@ -36,4 +36,10 @@ class ApplicationController < ActionController::Base
     flash[:danger] = "You don't have access to that page."
     redirect_to user_path(current_user)
   end
+
+  def set_back_redirect(&backup_path)
+    redirect_to :back
+  rescue ActionController::RedirectBackError
+    redirect_to backup_path.call
+  end
 end

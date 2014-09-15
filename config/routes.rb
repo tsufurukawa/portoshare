@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root to: 'pages#front'
 
   resources :projects, except: [:destroy] do
-    collection do
-      get :search, to: "search#index", as: :search
+    member do
+      post :vote, to: "votes#create"
     end
   end
   

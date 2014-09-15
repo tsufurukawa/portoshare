@@ -38,8 +38,8 @@
                 = link_to project, nil do
                   %h3#project-title= project.title
                 %p#project-subtitle= project.subtitle
-              = link_to "#", nil do
-                %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " 22"
+              = link_to vote_project_path(project), method: :post, remote: true, id: "project_#{project.id}_votes" do
+                %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " #{project.total_votes}"
 
         - if logged_in? && current_user.can_edit?(@user)
           - unless current_user.has_no_projects?

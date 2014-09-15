@@ -23,7 +23,7 @@ class AuthorizationsController < ApplicationController
       flash[:danger] = "There was an error when attempting to link your Github account. Please contact customer service if the problem persists."
     end
 
-    set_redirect
+    set_back_redirect { edit_user_path(current_user) }
   end
 
   def destroy
@@ -41,13 +41,5 @@ class AuthorizationsController < ApplicationController
   def failure
     flash[:danger] = params[:message] if params[:message]
     redirect_to edit_user_path(current_user)
-  end
-
-  def set_redirect
-    begin
-      redirect_to :back
-    rescue ActionController::RedirectBackError
-      redirect_to edit_user_path(current_user)
-    end
   end
 end

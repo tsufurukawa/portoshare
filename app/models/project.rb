@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
   has_many :project_details, dependent: :destroy
+  has_many :votes
   has_many :taggings
   has_many :tags, through: :taggings
   accepts_nested_attributes_for :project_details, allow_destroy: true, limit: 5, reject_if: :all_blank
@@ -43,5 +44,9 @@ class Project < ActiveRecord::Base
 
   def self.text_search(query_params)
     query_params.present? ? search(query_params) : all
+  end
+
+  def total_votes
+    votes.count
   end
 end
