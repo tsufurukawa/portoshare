@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def format_time(time)  # 2014-05-08 06:52:32 => 05/08/2014
-    time.strftime("%m/%d/%Y %l:%M%P")          
+    time.strftime("%m/%d/%Y")          
   end
 
   def sortable_link(name, column)

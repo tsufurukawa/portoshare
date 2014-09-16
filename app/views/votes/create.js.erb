@@ -1,1 +1,1 @@
-$("#project_<%= @project.id %>_votes").find("i").text(" <%= @project.votes_count %>");
+$("#project_<%= @project.id %>_votes").find(".fa-thumbs-o-up").text(" <%= @project.reload.votes_count %>");

@@ -17,8 +17,7 @@
       %h3.project-subheader= project.subtitle
       %p.main-description= markdown(project.main_description)
 
-    = link_to vote_project_path(project), method: :post, remote: true, id: "project_#{project.id}_votes", class: "voting-thumb" do
-      %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " #{project.votes_count}"
+    = render "shared/thumbs_up", project: project
       
     - if project.tags.any?
       .tag-container

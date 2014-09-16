@@ -2,6 +2,7 @@
 $primary-blue-color: #428BCA
 $hover-blue-color: #0066FF
 $primary-red-color: #ff4d4d
+$secondary-red-color: #CC0000
 
 // extend
 .main-header
@@ -33,10 +34,19 @@ $primary-red-color: #ff4d4d
     padding-top: 2em
     padding-bottom: 2em
 
+  .name
+    margin-bottom: 0
+
+  .username
+    margin-top: 0.3em
+
   #user-info
     margin-left: -4%
     padding-right: 0
     position: static
+
+  .location
+    margin-bottom: 0.8em
 
   #user-top-content
     margin-bottom: 0.5em
@@ -49,6 +59,12 @@ $primary-red-color: #ff4d4d
     position: absolute
     top: 20px
     right: 20px
+
+  .fa-pencil
+    color: $secondary-red-color
+
+    &:hover
+      color: $primary-red-color
 
 
   // all headers
@@ -166,7 +182,6 @@ $primary-red-color: #ff4d4d
 
       &:hover
         font-size: 1.5em
-
 
     #project-add-container
       text-align: center

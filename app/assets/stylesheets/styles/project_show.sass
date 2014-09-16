@@ -1,9 +1,16 @@
 // variables
 $primary-blue-color: #428BCA
 $hover-blue-color: #0066FF
+$form-input-background-color: #EEE
+$secondary-blue-color: #5bc0de
+$primary-red-color: #ff4d4d
+$secondary-red-color: #CC0000
 
 #project-show
   max-width: 1000px
+
+  #top-content
+    position: relative
 
   a:hover
     color: $hover-blue-color
@@ -13,28 +20,73 @@ $hover-blue-color: #0066FF
     margin-bottom: 1.5em
     padding-right: 5%
     padding-left: 5%
+    margin-top: 2em
+
+  #helper-link
+    list-style: none
+    text-align: left
+    font-size: 1.2em
+    padding-left: 2em
+
+    .fa-pencil
+      margin-left: 1em
+      color: $secondary-red-color
+
+      &:hover
+        color: $primary-red-color
 
   #project-title
-    font-family: 'Lobster', cursive
-    font-size: 3.1em
+    font-family: "Lobster", cursive
+    font-size: 2.8em
     font-weight: bold
+    margin-top: 0
 
   #project-subtitle
-    font-size: 1.7em
+    font-size: 1.5em
+
+  #project-url
+    font-size: 1.4em
 
   #project-created-at
-    font-size: 1.0em
-    span
-      font-size: 1.2em
+    font-size: 1.3em
 
   .tag
     font-size: 1.25em
+
+  #user-info-container
+    text-align: center
+    background: rgba(66, 139, 202, 0.3)
+    padding: 0.5em 0.7em 0.3em
+    border-bottom: 2px solid $primary-blue-color
+    font-size: 0.85em
+    border-radius: 10px
+    margin-top: -2em
+
+  #user-image
+    width: 80%
+    border-radius: 100%
+
+    &:hover
+      border: 2px $hover-blue-color solid
+
+  #user-name
+    font-size: 1.2em
+    margin: 0
+    line-height: 1
+
+  #user-username
+    margin-bottom: 0
+    font-size: 1.1em
+
+  .fa-map-marker
+    font-size: 1em
 
   #main-description-text
     margin-bottom: 2em
 
   #main-description-header
     color: $hover-blue-color
+    font-size: 1.6em
 
   #project-main-description ~ *
     font-size: 1.2em
@@ -53,11 +105,18 @@ $hover-blue-color: #0066FF
     width: 50%
     padding: 2em 2em 0 2em
 
+  .fa-thumbs-o-up
+    font-size: 5em
+
+    &:hover
+      font-size: 5.5em
+
 @media only screen and (max-width: 767px)
   #project-show
-    #project-image
-      width: 60% !important
-      display: block
-      margin-left: auto
-      margin-right: auto
-      margin-bottom: 3em
+    font-size: 0.85em
+
+    #user-name, #user-username, .fa-map-marker
+      display: none
+
+    #user-info-container
+      margin-top: 0.6em

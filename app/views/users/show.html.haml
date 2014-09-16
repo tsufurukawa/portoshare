@@ -7,7 +7,8 @@
         #user-info.col-sm-8
           %h2.name= @user.name
           %h4.username= @user.username
-          %p.location= @user.location
+          - if @user.location.present?
+            %i.fa.fa-map-marker.location.text-muted= " #{@user.location}"
           %p.bio= @user.bio
           - if logged_in? && current_user.can_edit?(@user)
             = link_to edit_user_path(@user), id: "user-edit-link" do
@@ -38,8 +39,8 @@
                 = link_to project, nil do
                   %h3#project-title= project.title
                 %p#project-subtitle= project.subtitle
-              = link_to vote_project_path(project), method: :post, remote: true, id: "project_#{project.id}_votes" do
-                %i.fa.fa-thumbs-o-up{"data-toggle" => "tooltip", "data-placement" => "left", "title" => "Click to Vote!!"}= " #{project.votes_count}"
+
+              = render "shared/thumbs_up", project: project
 
         - if logged_in? && current_user.can_edit?(@user)
           - unless current_user.has_no_projects?

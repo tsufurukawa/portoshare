@@ -6,11 +6,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "PortoShare", "", class: "navbar-brand"
+      = link_to "PortoShare", root_path, class: "navbar-brand"
     .collapse.navbar-collapse#main-nav-toggle
       %ul.nav.navbar-nav
-        %li= link_to "About", "", class: "navbar-link"
-        %li= link_to "Another", "", class: "navbar-link"
+        %li= link_to "Home", root_path, class: "navbar-link"
+        %li= link_to "Projects", projects_path, class: "navbar-link"
 
 #login-signup-button-container
   - unless logged_in?
@@ -29,6 +29,6 @@
             %p.text-muted View Profile
         %li.divider(role="presentation")
         %li(role="presentation")
-          %a.dropdown-item(role="menuitem" tabindex="-1" href="#")Something
+          = link_to "View Projects", projects_path, role: "menuitem", tabindex: "-1", class: "dropdown-item"
         %li(role="presentation")
           = link_to "Log Out", log_out_path, method: :delete, role: "menuitem", tabindex: "-1", class: "dropdown-item"

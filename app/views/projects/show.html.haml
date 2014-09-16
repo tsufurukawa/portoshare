@@ -1,15 +1,30 @@
 #project-show.container-fluid 
   #bulletin-board-content
-    #title-container
-      %h1#project-title= @project.title
-      %h4#project-subtitle= @project.subtitle
-      %h6#project-created-at
-        #{@project.created_at} by 
-        %span
-          = link_to @project.user.name, @project.user
-      - if @project.tags.any?
-        %i.fa.fa-tags.fa-lg
-        %span.tag= display_tags(@project)
+    #top-content.clearfix
+      %span#helper-link
+        = link_to @user do
+          %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
+        - if logged_in? && current_user.owns?(@project)
+          = link_to edit_project_path(@project) do
+            %i.fa.fa-pencil.fa-lg= " Edit Project"
+
+      #title-container.col-xs-10
+        %h1#project-title= @project.title
+        %h4#project-subtitle= @project.subtitle
+        %p#project-url
+          = link_to @project.url, @project.url, {"data-toggle" => "tooltip", "data-placement" => "right", "title" => "Click to Visit Site!!"}
+        %p#project-created-at= format_time(@project.created_at)
+        - if @project.tags.any?
+          %i.fa.fa-tags.fa-lg
+          %span.tag= display_tags(@project)
+
+      #user-info-container.col-xs-2
+        = link_to @user, nil do
+          = image_tag @user.avatar_url, id: "user-image"
+          %p#user-name= "#{@user.name}"
+          %p#user-username= " ( #{@user.username} )"
+        - if @user.location.present?
+          %i.fa.fa-map-marker= " #{@user.location}"
 
     #masonry-container
       .item
@@ -23,3 +38,6 @@
           .text-container
             %h4.more-info-header= project_detail.header
             %p.more-info-description= markdown(project_detail.content)
+
+      .item
+        = render "shared/thumbs_up", project: @project

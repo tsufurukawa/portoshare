@@ -9,7 +9,9 @@ class ProjectsController < ApplicationController
     @no_match_msg = @projects.blank?
   end
 
-  def show; end
+  def show
+    @user = @project.user
+  end
 
   def new
     @project = Project.new

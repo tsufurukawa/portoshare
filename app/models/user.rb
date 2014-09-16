@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
   def has_no_projects?
     projects.count == 0
   end
+
+  def owns?(project)
+    self == project.user
+  end
 end
