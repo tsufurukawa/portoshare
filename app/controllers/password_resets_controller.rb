@@ -1,13 +1,11 @@
 class PasswordResetsController < ApplicationController
   before_action :require_authenticated_user
-  before_action { require_owner(params[:user_id]) }
+  before_action :set_user
+  before_action { require_owner(@user.id) }
 
-  def new
-    @user = User.find(params[:user_id])
-  end
+  def new; end
 
   def create
-    @user = User.find(params[:user_id])
     @user.updating_password = true
 
     if @user && @user.authenticate(params[:old_password])
@@ -25,5 +23,11 @@ class PasswordResetsController < ApplicationController
       flash.now[:danger] = "The password you entered is incorrect. Please try again."
       render :new
     end
+  end
+
+  private
+
+  def set_user
+    @user = User.find_by_slug!(params[:user_id])
   end
 end

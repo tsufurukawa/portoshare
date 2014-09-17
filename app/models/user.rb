@@ -14,6 +14,16 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  before_save :generate_slug
+
+  def to_param
+    slug
+  end
+
+  def generate_slug
+    self.slug = username.parameterize
+  end
+
   def should_validate_password?
     updating_password || new_record?
   end

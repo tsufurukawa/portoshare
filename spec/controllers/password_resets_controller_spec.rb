@@ -7,13 +7,13 @@ describe PasswordResetsController do
     end
 
     it_behaves_like "require owner" do
-      let(:action) { get :new, user_id: @bob.id }
+      let(:action) { get :new, user_id: @bob.slug }
     end
 
     it "sets @user variable" do
       alice = Fabricate(:user)
       sets_current_user(alice)
-      get :new, user_id: alice.id
+      get :new, user_id: alice.slug
       expect(assigns(:user)).to eq(alice)
     end
   end
@@ -24,7 +24,7 @@ describe PasswordResetsController do
     end
 
     it_behaves_like "require owner" do
-      let(:action) { post :create, user_id: @bob.id }
+      let(:action) { post :create, user_id: @bob.slug }
     end
 
     context "old password cannot be found" do
@@ -32,7 +32,7 @@ describe PasswordResetsController do
 
       before do
         sets_current_user(alice)
-        post :create, user_id: alice.id, old_password: "wrong password"
+        post :create, user_id: alice.slug, old_password: "wrong password"
       end
 
       it "renders new template" do
@@ -49,7 +49,7 @@ describe PasswordResetsController do
 
       before do
         sets_current_user(alice)
-        post :create, user_id: alice.id, old_password: "password", 
+        post :create, user_id: alice.slug, old_password: "password", 
           new_password: "123", new_password_confirmation: "123"
       end
 
@@ -67,7 +67,7 @@ describe PasswordResetsController do
 
       before do
         sets_current_user(alice)
-        post :create, user_id: alice.id, old_password: "password",
+        post :create, user_id: alice.slug, old_password: "password",
           new_password: "new password 1", new_password_confirmation: "new password 2"
       end
 
@@ -89,7 +89,7 @@ describe PasswordResetsController do
 
       before do
         sets_current_user(alice)
-        post :create, user_id: alice.id, old_password: "password",
+        post :create, user_id: alice.slug, old_password: "password",
           new_password: "new password", new_password_confirmation: "new password"
       end
 

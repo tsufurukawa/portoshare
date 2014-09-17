@@ -16,7 +16,7 @@ describe UsersController do
       before do
         client = double(:client, repos: [1, 2, 3], valid?: true)
         allow(OctokitWrapper::Client).to receive(:new).and_return(client)
-        get :show, id: alice.id
+        get :show, id: alice.slug
       end
 
       it "sets the @user variable" do
@@ -39,7 +39,7 @@ describe UsersController do
         authorization = Fabricate(:authorization, provider: "github", user: alice)
         client = double(:client, repos: "Error message", valid?: false)
         allow(OctokitWrapper::Client).to receive(:new).and_return(client)
-        get :show, id: alice.id
+        get :show, id: alice.slug
       end
 
       it "unlinks the user's github account" do
@@ -49,7 +49,7 @@ describe UsersController do
 
     context "when user does not have a linked github account" do
       let(:alice) { Fabricate(:user) }
-      before { get :show, id: alice.id }
+      before { get :show, id: alice.slug }
 
       it "sets the @user variable" do
         expect(assigns(:user)).to eq(alice)
@@ -115,13 +115,13 @@ describe UsersController do
     end
 
     it_behaves_like "require owner" do
-      let(:action) { get :edit, id: @bob.id }
+      let(:action) { get :edit, id: @bob.slug }
     end
     
     it "sets the @user variable" do
       alice = Fabricate(:user)
       sets_current_user(alice)
-      get :edit, id: alice.id
+      get :edit, id: alice.slug
       expect(assigns(:user)).to eq(alice)
     end
   end
@@ -132,7 +132,7 @@ describe UsersController do
     end
 
     it_behaves_like "require owner" do
-      let(:action) { patch :update, id: @bob.id, user: Fabricate.attributes_for(:user) }
+      let(:action) { patch :update, id: @bob.slug, user: Fabricate.attributes_for(:user) }
     end
 
     context "for valid user input" do
@@ -140,7 +140,7 @@ describe UsersController do
 
       before do
         sets_current_user(alice)
-        patch :update, id: alice.id, user: Fabricate.attributes_for(:user, email: "new@email.com", bio: "new bio")
+        patch :update, id: alice.slug, user: Fabricate.attributes_for(:user, email: "new@email.com", bio: "new bio")
       end
 
       it "updates the user attributes" do        
@@ -149,7 +149,7 @@ describe UsersController do
       end
 
       it "redirects to user edit path" do
-        expect(response).to redirect_to edit_user_path(alice)
+        expect(response).to redirect_to edit_user_path(alice.reload)
       end
 
       it "sets a flash success message" do
@@ -162,7 +162,7 @@ describe UsersController do
 
       before do
         sets_current_user(alice)
-        patch :update, id: alice.id, user: { email: nil, username: alice.username + "123" }
+        patch :update, id: alice.slug, user: { email: nil, username: alice.username + "123" }
       end
 
       it "does not update the user attributes" do
@@ -184,7 +184,7 @@ describe UsersController do
 
       before do
         sets_current_user(alice)
-        patch :update, id: alice.id, remove_avatar: true
+        patch :update, id: alice.slug, remove_avatar: true
       end
 
       it "deletes the user's avatar" do

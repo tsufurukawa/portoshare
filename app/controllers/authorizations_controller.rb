@@ -1,6 +1,7 @@
 class AuthorizationsController < ApplicationController
   before_action :require_authenticated_user, only: [:new, :create, :destroy]
-  before_action only: [:new, :destroy] { require_owner(params[:user_id]) }
+  before_action :set_user, only: [:new, :destroy]
+  before_action only: [:new, :destroy] { require_owner(@user.id) }
 
   def new
     redirect_to "/auth/github"
@@ -41,5 +42,9 @@ class AuthorizationsController < ApplicationController
   def failure
     flash[:danger] = params[:message] if params[:message]
     redirect_to edit_user_path(current_user)
+  end
+
+  def set_user
+    @user = User.find_by_slug!(params[:user_id])
   end
 end

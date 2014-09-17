@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915210514) do
+ActiveRecord::Schema.define(version: 20140917173706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,10 @@ ActiveRecord::Schema.define(version: 20140915210514) do
     t.string   "url"
     t.string   "image"
     t.integer  "votes_count",      default: 0, null: false
+    t.string   "slug"
   end
+
+  add_index "projects", ["slug"], name: "index_projects_on_slug", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -70,7 +73,10 @@ ActiveRecord::Schema.define(version: 20140915210514) do
     t.string   "location"
     t.text     "bio"
     t.string   "avatar"
+    t.string   "slug"
   end
+
+  add_index "users", ["slug"], name: "index_users_on_slug", using: :btree
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"

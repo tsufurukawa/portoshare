@@ -16,7 +16,7 @@ feature "User edits profile" do
 
   scenario "user updates account information" do
     update_user_account_information
-    visit user_path(alice)
+    visit user_path(alice.reload)
     expect(page).to have_content "newemail@example.com"
     expect(page).to have_content "New Username"
   end

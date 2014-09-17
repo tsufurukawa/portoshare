@@ -20,7 +20,7 @@ describe ProjectsController do
     it "sets the @project variable" do
       alice = Fabricate(:user)
       project = Fabricate(:project)
-      get :show, id: project.id
+      get :show, id: project.slug
       expect(assigns(:project)).to eq(project)
     end
   end
@@ -163,14 +163,14 @@ describe ProjectsController do
     end
 
     it_behaves_like "require project to belong to current user" do
-      let(:action) { get :edit, id: @project.id }
+      let(:action) { get :edit, id: @project.slug }
     end
 
     it "sets the @project variable" do
       alice = Fabricate(:user)
       sets_current_user(alice)
       project = Fabricate(:project, user: alice)
-      get :edit, id: project.id
+      get :edit, id: project.slug
       expect(assigns(:project)).to eq(project)
     end
   end
@@ -181,7 +181,7 @@ describe ProjectsController do
     end
 
     it_behaves_like "require project to belong to current user" do
-      let(:action) { patch :update, id: @project.id, project: Fabricate.attributes_for(:project) }
+      let(:action) { patch :update, id: @project.slug, project: Fabricate.attributes_for(:project) }
     end
 
     context "with too many nested attributes (more than 5 'project detail' entries)" do
@@ -190,7 +190,7 @@ describe ProjectsController do
 
       before do
         sets_current_user(alice)
-        patch :update, id: project.id, project: Fabricate.attributes_for(:project, title: "new title", 
+        patch :update, id: project.slug, project: Fabricate.attributes_for(:project, title: "new title", 
           project_details_attributes: { 
             "0"=>{header: "Header 1", content: "Content 1", _destroy: "false"},
             "1"=>{header: "Header 2", content: "Content 1", _destroy: "false"},
@@ -225,7 +225,7 @@ describe ProjectsController do
 
       before do
         sets_current_user(alice)
-        patch :update, id: project.id, project: Fabricate.attributes_for(:project, title: "new title", 
+        patch :update, id: project.slug, project: Fabricate.attributes_for(:project, title: "new title", 
           project_details_attributes: { 
             "0"=>{header: "Header 1", content: "Content 1", _destroy: "false"},
           })
@@ -237,7 +237,7 @@ describe ProjectsController do
       end
 
       it "redirects to project show path" do
-        expect(response).to redirect_to project
+        expect(response).to redirect_to project.reload
       end
     end
 
@@ -247,7 +247,7 @@ describe ProjectsController do
 
       before do
         sets_current_user(alice)
-        patch :update, id: project.id, project: { title: "", subtitle: "new subtitle" }
+        patch :update, id: project.slug, project: { title: "", subtitle: "new subtitle" }
       end
 
       it "does not update the project attributes" do

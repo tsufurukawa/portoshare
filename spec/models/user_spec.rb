@@ -6,7 +6,6 @@ describe User do
   it { should have_many(:projects).order(created_at: :desc) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:email) }
-  it { should validate_uniqueness_of(:email) }
   it { should validate_presence_of(:username) }
   it { should validate_uniqueness_of(:username) }
   it { should ensure_length_of(:username).is_at_most(20) }

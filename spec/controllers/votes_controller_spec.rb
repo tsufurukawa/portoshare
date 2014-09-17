@@ -13,7 +13,7 @@ describe VotesController do
       unless example.metadata[:skip_before]
         request.env["HTTP_REFERER"] = "http://test.host/"
         sets_current_user(alice)
-        post :create, id: project.id
+        post :create, id: project.slug
       end
     end
 
@@ -35,7 +35,7 @@ describe VotesController do
 
     it "renders the 'create' javascript template for ajax request", skip_before: true do
       sets_current_user(alice)
-      xhr :post, :create, id: project.id
+      xhr :post, :create, id: project.slug
       expect(response).to render_template :create
     end
   end

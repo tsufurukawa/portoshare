@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
   end
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = Project.find_by_slug!(params[:id])
   end
 
   def display_error_and_render(error_msg, template)

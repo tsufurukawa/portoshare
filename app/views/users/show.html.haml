@@ -23,8 +23,9 @@
         - if logged_in? && current_user.can_edit?(@user)
           %li
             = link_to "Edit Profile", edit_user_path(@user), class: "tab-item"
-        %li
-          = link_to "Reset Password", user_password_resets_path(user_id: @user.id), class: "tab-item"
+        - if logged_in? && current_user.can_edit?(@user)
+          %li
+            = link_to "Reset Password", user_password_resets_path(@user), class: "tab-item"
 
   .tab-content.col-sm-12
     #projects.tab-pane.fade.in.active.container-fluid

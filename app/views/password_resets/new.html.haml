@@ -3,7 +3,7 @@
     %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
   %h1#account-info-header Reset Your Password
 
-  = bootstrap_form_tag url: user_password_resets_path, html: { id: "password-reset-form" } do |f|
+  = bootstrap_form_tag url: user_password_resets_path(@user), html: { id: "password-reset-form" } do |f|
     = f.password_field :old_password
     - if @user.errors.present?
       .form-group.has-error

@@ -7,13 +7,13 @@ describe AuthorizationsController do
     end
 
     it_behaves_like "require owner" do
-      let(:action) { get :new, user_id: @bob.id }
+      let(:action) { get :new, user_id: @bob.slug }
     end
 
     it "redirects to the github authorization url" do
       alice = Fabricate(:user)
       sets_current_user(alice)
-      get :new, user_id: alice.id
+      get :new, user_id: alice.slug
       expect(response).to redirect_to "/auth/github"
     end
   end
@@ -55,7 +55,7 @@ describe AuthorizationsController do
     end
 
     it_behaves_like "require owner" do
-      let(:action) { delete :destroy, user_id: @bob.id, id: 1 }
+      let(:action) { delete :destroy, user_id: @bob.slug, id: 1 }
     end
 
     context "when user has a linked github account" do
@@ -64,7 +64,7 @@ describe AuthorizationsController do
       
       before do
         sets_current_user(alice)
-        delete :destroy, user_id: alice.id, id: github_auth.id
+        delete :destroy, user_id: alice.slug, id: github_auth.id
       end
 
       it "unlinks the account" do
@@ -85,7 +85,7 @@ describe AuthorizationsController do
 
       before do
         sets_current_user(alice)
-        delete :destroy, user_id: alice.id, id: 1
+        delete :destroy, user_id: alice.slug
       end
 
       it "sets a flash error message" do
