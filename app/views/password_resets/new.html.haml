@@ -1,0 +1,16 @@
+#password-reset.container
+  = link_to @user do
+    %i.fa.fa-arrow-circle-left.fa-lg= " Back to Profile"
+  %h1#account-info-header Reset Your Password
+
+  = bootstrap_form_tag url: user_password_resets_path, html: { id: "password-reset-form" } do |f|
+    = f.password_field :old_password
+    - if @user.errors.present?
+      .form-group.has-error
+        = render "new_password_field"
+    - else
+      .form-group
+        = render "new_password_field"    
+    = f.password_field :new_password_confirmation
+    = f.hidden_field :user_id, value: @user.id
+    = f.submit "Reset Password", class: "btn btn-primary"

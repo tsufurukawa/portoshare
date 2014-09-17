@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create, :edit, :update] do
     resources :authorizations, only: [:new]
     delete '/unlink_github', to: 'authorizations#destroy'
+
+    get '/password_resets', to: 'password_resets#new'
+    post '/password_resets', to: 'password_resets#create'
   end
 
   get '/sign_up', to: 'users#new'

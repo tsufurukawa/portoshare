@@ -13,7 +13,6 @@
         %h4#project-subtitle= @project.subtitle
         %p#project-url
           = link_to @project.url, @project.url, {"data-toggle" => "tooltip", "data-placement" => "right", "title" => "Click to Visit Site!!"}
-        %p#project-created-at= format_time(@project.created_at)
         - if @project.tags.any?
           %i.fa.fa-tags.fa-lg
           %span.tag= display_tags(@project)

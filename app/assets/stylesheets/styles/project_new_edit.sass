@@ -1,8 +1,22 @@
-// variables
+// variables and extend
 $primary-blue-color: #428BCA
 $hover-blue-color: #0066FF
 $form-input-background-color: #EEE
 
+.back-to-profile
+  color: $primary-blue-color
+  font-size: 1.5em
+  margin-bottom: 1em 
+
+.form-top-header
+  margin-bottom: 1em
+  font-family: "Lobster", cursive
+  font-weight: bold
+  text-align: center
+  color: $primary-blue-color
+  font-size: 2.5em
+
+// general styling
 #project-new, #project-edit
   max-width: 700px
   background: white
@@ -18,16 +32,10 @@ $form-input-background-color: #EEE
     text-align: left
 
   .fa-arrow-circle-left
-    color: $primary-blue-color
-    font-size: 1.5em
-    margin-bottom: 1em
+    @extend .back-to-profile
 
   #new-project-header
-    font-family: "Lobster", cursive
-    font-weight: bold
-    text-align: center
-    color: $primary-blue-color
-    font-size: 2.5em
+    @extend .form-top-header
 
   .fa-times:hover
     color: red
