@@ -9,7 +9,7 @@ feature "User signs up" do
     fill_in "Email", with: "test@example.com"
     fill_in "Password", with: "password"
     click_button("Sign Up")
-    expect(page).to have_content "You have successfully registered for an account. Welcome to Portoshare!!!"
+    expect(page).to have_content "Welcome to PortoShare!!"
     expect(page).to have_content "test@example.com"
   end
 end

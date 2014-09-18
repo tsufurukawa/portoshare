@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe UsersController do
   describe "GET new" do
-    #TODO: change projects_path
     it_behaves_like "require unauthenticated user" do
       let(:action) { get :new }
     end
@@ -63,7 +62,6 @@ describe UsersController do
   end
 
   describe "POST create" do
-    #TODO: change projects_path
     it_behaves_like "require unauthenticated user" do
       let(:action) { post :create }
     end
@@ -79,8 +77,8 @@ describe UsersController do
         expect(session[:user_id]).to eq(User.first.id)
       end
 
-      it "redirects to projects path for an html request" do
-        expect(response).to redirect_to projects_path
+      it "redirects to user edit path for an html request" do
+        expect(response).to redirect_to edit_user_path(User.first)
       end
     end
 

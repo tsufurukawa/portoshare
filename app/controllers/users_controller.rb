@@ -30,8 +30,10 @@ class UsersController < ApplicationController
     respond_to do |format|  
       if @user.save
         session[:user_id] = @user.id
-        flash[:success] = "You have successfully registered for an account. Welcome to Portoshare!!!"
-        format.html { redirect_to projects_path }
+        flash[:success] = "Welcome to PortoShare!! Before you start building your portfolio, \
+          we suggest you fill out some additional information to help other users \
+          get to know you better."
+        format.html { redirect_to edit_user_path(@user) }
         format.js
       else
         format.html { render :new }

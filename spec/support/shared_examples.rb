@@ -4,7 +4,6 @@ shared_examples "require unauthenticated user" do
     action
   end
 
-  #TODO: change projects_path
   it "redirects to projects index page" do
     expect(response).to redirect_to projects_path
   end

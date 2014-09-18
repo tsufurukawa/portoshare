@@ -13,7 +13,7 @@
               %i.fa.fa-github= " Continue to Github Repository"
             %p.updated_at
               %span.text-muted Last updated
-              %span= repo.updated_at
+              %span= format_time(repo.updated_at)
             %i.fa.fa-star= " #{repo.stargazers_count}"
       - if user.github_url_present?
         .col-sm-6

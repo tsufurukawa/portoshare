@@ -16,7 +16,6 @@
 //= require bootstrap-sprockets
 //= require jquery.scrollTo.min.js
 //= require jquery.localScroll.min.js
-//= require jquery.dotdotdot.min.js
 //= require jquery.locationAutocomplete.js
 //= require jquery.tokeninput.js
 //= require jquery.infinitescroll.min.js

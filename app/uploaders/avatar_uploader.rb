@@ -19,7 +19,11 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    ActionController::Base.helpers.asset_path("/tmp/default_avatar_170.png")
+    if version_name == :thumb
+      ActionController::Base.helpers.asset_path("https://s3-us-west-1.amazonaws.com/portoshare/images/thumb_default_avatar_170.png")
+    else
+      ActionController::Base.helpers.asset_path("https://s3-us-west-1.amazonaws.com/portoshare/images/default_avatar_170.png")
+    end
   end
 
   # white-list of allowed extensions

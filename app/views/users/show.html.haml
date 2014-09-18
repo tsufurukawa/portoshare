@@ -31,25 +31,27 @@
     #projects.tab-pane.fade.in.active.container-fluid
       %h2#project-header My Projects
       .row
-        - @user.projects.each do |project|
-          %li.col-sm-6.col-md-4
-            .thumbnail
-              = link_to project, nil do
-                = image_tag "http://lorempixel.com/430/300" # TODO: change to project.image.url
-              .caption
-                = link_to project, nil do
-                  %h3#project-title= project.title
-                %p#project-subtitle= project.subtitle
+        #masonry-container
+          - @user.projects.each do |project|
+            .item
+              .thumbnail
+                #image-container
+                  = link_to project, nil do
+                    = image_tag project.image.url
+                .caption
+                  = link_to project, nil do
+                    %h3#project-title= project.title
+                  %p#project-subtitle= project.subtitle
 
-              = render "shared/thumbs_up", project: project
+                = render "shared/thumbs_up", project: project
 
-        - if logged_in? && current_user.can_edit?(@user)
-          - unless current_user.has_no_projects?
-            %li.col-sm-6.col-md-4#project-add-container
-              = render "add_project_button", user: @user, style: nil
-          - else
-            %li.col-xs-12#project-add-container
-              = render "add_project_button", user: @user, style: "margin-top: -10%"
+          - if logged_in? && current_user.can_edit?(@user)
+            - unless current_user.has_no_projects?
+              #project-add-container.item
+                = render "add_project_button", user: @user, style: nil
+            - else
+              %li.col-xs-12#project-add-container
+                = render "add_project_button", user: @user, style: "margin-top: -10%"
 
     #github.tab-pane.fade.container-fluid
       = render "github", user: @user, repositories: @repositories, user_github: @user_github

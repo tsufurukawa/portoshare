@@ -9,7 +9,7 @@ feature "User edits profile" do
   end
 
   scenario "user uploads new avatar" do
-    attach_file "Upload your photo", "public/tmp/thinking_boy_clipart.png"
+    attach_file "Upload your photo", "public/tmp/default_avatar_170.png"
     click_button "Update Profile"
     expect_new_image_in_user_profile(alice)
   end
@@ -29,7 +29,7 @@ feature "User edits profile" do
 
   def expect_new_image_in_user_profile(user)
     visit user_path(user)
-    expect(page).to have_css("img[alt='Thinking boy clipart']")
+    expect(page).to have_css("img[alt='Default avatar 170']")
   end
 
   def update_user_account_information

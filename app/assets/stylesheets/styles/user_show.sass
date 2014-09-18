@@ -1,17 +1,16 @@
-// variables
+// variables and extend
 $primary-blue-color: #428BCA
 $hover-blue-color: #0066FF
 $primary-red-color: #ff4d4d
 $secondary-red-color: #CC0000
 
-// extend
 .main-header
   font-family: "Lobster", cursive
   color: $primary-blue-color
   padding-bottom: 0.4em
   padding-left: 0.3em
 
-
+// general styling
 #user-show
   max-width: 1170px
   
@@ -148,7 +147,6 @@ $secondary-red-color: #CC0000
         color: $primary-red-color
 
   // user projects styling
-
   #projects
     margin-top: 2%
     padding: 1% 6%
@@ -157,21 +155,26 @@ $secondary-red-color: #CC0000
     li
       list-style: none
 
+    #image-container
+      background: white
+
     .thumbnail
-      background: rgba(66, 139, 202, 0.15)
+      background: rgba(66, 139, 202, 0.3)
       position: relative
+      padding: 0
+
+    .item
+      width: 33%
+      padding: 0.2em 0.5em
 
     .caption
-      height: 80px
-      padding-top: 0      
+      padding: 0 0.7em 0.7em
 
     #project-title
       font-size: 1.2em
       font-weight: 800
-
-    #project-subtitle
-      font-size: 1em
-      color: black
+      margin-top: 0.7em
+      margin-bottom: 0.1em
 
     .fa-thumbs-o-up
       position: absolute
@@ -185,7 +188,7 @@ $secondary-red-color: #CC0000
 
     #project-add-container
       text-align: center
-      margin-top: 10%
+      margin-top: 5%
 
       #bounce-item
         text-align: center
@@ -202,7 +205,7 @@ $secondary-red-color: #CC0000
     #user-info
       padding-left: 10%
 
-@media only screen and (max-width: 768px)
+@media only screen and (max-width: 767px)
   #user-show
     #basic-user-info
       text-align: center
@@ -231,16 +234,13 @@ $secondary-red-color: #CC0000
       margin-bottom: 5em
 
     #projects
+      .item
+        width: 100%
+
       .thumbnail
         width: 350px
         margin-left: auto
         margin-right: auto
-
-@media only screen and (max-width: 550px)
-  #user-show
-    .updated_at
-      display: none
-
 
 
 

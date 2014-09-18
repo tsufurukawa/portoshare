@@ -2,14 +2,12 @@ require 'rails_helper'
 
 describe SessionsController do
   describe "GET new" do
-    # TODO: change "projects_path"
     it_behaves_like "require unauthenticated user" do
       let(:action) { get :new }
     end
   end
 
   describe "POST create" do    
-    # TODO: change "projects_path"
     it_behaves_like "require unauthenticated user" do
       let(:action) { post :create }
     end
@@ -22,7 +20,6 @@ describe SessionsController do
         expect(session[:user_id]).to eq(alice.id)
       end
 
-      # TODO: change projects_path
       it "redirects to project index page for html request" do
         expect(response).to redirect_to projects_path
       end
