@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'bcrypt'
 gem 'font-awesome-sass'
 gem 'bootstrap_form'
+gem 'fog', require: "fog/aws/storage"
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'figaro'
@@ -27,6 +28,7 @@ group :assets do
   gem 'sass-rails', '~> 4.0.3'
   gem 'coffee-rails', '~> 4.0.0'
   gem 'uglifier', '>= 1.3.0'
+  gem 'asset_sync'
 end
 
 group :doc do
