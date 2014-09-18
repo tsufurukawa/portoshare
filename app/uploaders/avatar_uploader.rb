@@ -10,10 +10,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # default directory where uploaded files are stored (not for production / staging)
   def store_dir
-    if Rails.env.test?
-      "uploads/test/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    if Rails.env.test? || Rails.env.development?
+      "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     else
-      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "#{Rails.env}/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
   end
 
