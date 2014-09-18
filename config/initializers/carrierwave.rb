@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
       :aws_secret_access_key  => Figaro.env.AWS_SECRET_ACCESS_KEY,
       :region                 => Figaro.env.FOG_REGION
     }
-    config.fog_directory  = "#{Figaro.env.FOG_DIRECTORY}/#{Rails.env}"
+    config.fog_directory  = "#{Figaro.env.FOG_DIRECTORY}"
   else
     config.storage = :file # for development and test environments
     config.enable_processing = Rails.env.development? # no image processing in testing
