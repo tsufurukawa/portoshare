@@ -4,56 +4,80 @@
       %li(class="active")
         = link_to "Home", "#cover"
       %li
-        = link_to "Description", "#description"
+        = link_to "About Us", "#description"
       %li
-        = link_to "Feature", "#feature"
+        = link_to "Features", "#feature"
+      %li
+        = link_to "Sample", "#sample"
 
   #cover
-  .container
+  .container-fluid
     .row
-      .col-sm-5
-        .text-container
-          %h2 Create And Share Your Portfolio  
-          %p Some text will go here!!
-      .col-sm-7
+      .col-sm-5.col-sm-offset-1
+        .text-container#top-content
+          %h2#main-header CREATE AND SHARE YOUR WEB PORTFOLIO
+          %p#short-description Building a portfolio has never been easier
+          - unless logged_in?
+            %button.btn.btn-primary#front-signup-button{"data-target" => "#sign-up-modal", "data-toggle" => "modal"} Sign Up Now!!!
+      .col-sm-6
         .img-container
           = image_tag "https://s3-us-west-1.amazonaws.com/portoshare/images/imac_clipart.png", id: "imac-clipart"
 
   .outer
     #description
-    .container
+    .container-fluid
       .row
         .col-sm-3.col-sm-offset-1.col-xs-3
           .img-container
             = image_tag "https://s3-us-west-1.amazonaws.com/portoshare/images/thinking_boy_clipart.png", id: "thinking-boy-clipart"
         .col-sm-6.col-xs-9
           .text-container
-            %h2 Description
-            %p Ever have trouble finding a way to promote your newly designed website? ... Go on with the description here. Lorem ipsum dolor sit amet, iaculis condimentum vitae malesuada mi nostra, commodo pede sem justo at, dui sed primis nunc faucibus. Nunc condimentum sit sed arcu tristique tincidunt.
+            %h3#description-header WHY PORTOSHARE?
+            %p.description-text Ever have trouble finding a way to promote your newly designed website? Looking for quick and easy way to build a portfolio for showcasing your skills to prospective employers?
+            %p.description-text Portoshare is designed for web developers of all level. Whether you're a freelancer, a seasoned developer or an absolute beginner, all you need is a website with a valid URL and you are ready to start sharing your projects for everyone to see!
 
-  .container#feature
+  #feature
+  .containe-fluid
     .row
-      %h1 Feature
-      .col-sm-4.text-center.clearfix
-        .col-xs-9.col-sm-12.pull-right
-          %h4 Sign Up
-          %p This is a random string of text that is used as a placeholder. Note: this will be modified later on.
-        .col-xs-3.col-sm-12.pull-left
-          %img.feature-clipart(src="https://s3-us-west-1.amazonaws.com/portoshare/images/stopwatch.png")
-      .col-sm-4.text-center.clearfix
-        .col-xs-9.col-sm-12.pull-right
-          %h4 Edit and Customize
-          %p This is a random string of text that is used as a placeholder. Note: this will be modified later on.
-        .col-xs-3.col-sm-12.pull-left
-          %img.feature-clipart(src="https://s3-us-west-1.amazonaws.com/portoshare/images/hammer_customize.png")
-      .col-sm-4.text-center.clearfix
-        .col-xs-9.col-sm-12.pull-right
-          %h4 Share
-          %p This is a random string of text that is used as a placeholder. Note: this will be modified later on.
-        .col-xs-3.col-sm-12.pull-left
-          %img.feature-clipart(src="https://s3-us-west-1.amazonaws.com/portoshare/images/share.png")
+      %h3.feature-header QUICK, EASY, STYLISH
+      #feature-columns.clearfix
+        .col-sm-4.text-center.clearfix
+          .col-xs-3.col-sm-12.pull-left
+            %img.feature-clipart(src="https://s3-us-west-1.amazonaws.com/portoshare/images/stopwatch.png")        
+          .col-xs-9.col-sm-12.pull-right          
+            %h4 Sign Up
+            %p Signing up for an account takes less than a minute and is absolutely FREE. Click on the "Sign up" button to get started!
+        .col-sm-4.text-center.clearfix
+          .col-xs-3.col-sm-12
+            %img.feature-clipart(src="https://s3-us-west-1.amazonaws.com/portoshare/images/hammer_customize.png")        
+          .col-xs-9.col-sm-12
+            %h4 Create and Customize
+            %p Add content to your projects using simple but powerful Markdown syntax. You supply the content, we provide the styling!
+        .col-sm-4.text-center.clearfix
+          .col-xs-3.col-sm-12
+            %img.feature-clipart(src="https://s3-us-west-1.amazonaws.com/portoshare/images/share.png")        
+          .col-xs-9.col-sm-12
+            %h4 Share
+            %p Your projects are public for everyone to see. See <a href="/projects">here</a> for a list of projects that other users have posted!
 
-  %footer
-    Copyright &copy 2014 PortoShare. All rights reserved.
+  .outer
+    #sample
+      %h3.feature-header#sample-project SAMPLE PORTFOLIO
+      #sample-columns.clearfix
+        .col-xs-6.text-center
+          %h4 Sample User Project
+          %p Wondering what a project looks like?
+          = link_to "View Sample Project", project_path(@sample_project), class: "btn btn-info btn-lg"
+        .col-xs-6.text-center
+          %h4 Sample User Profile
+          %p Wondering what a profile looks like?
+          = link_to "View Sample Profile", user_path(@sample_user), class: "btn btn-info btn-lg"
+
+  .container-fluid#question
+    .row
+      %h3 Comments or Questions?
+      %p#questions-text
+        %span If you have any questions, comments or suggestions, please contact us at
+        %span= mail_to "portoshare@gmail.com"
 
 

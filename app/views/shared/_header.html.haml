@@ -9,8 +9,7 @@
       = link_to "PortoShare", root_path, class: "navbar-brand"
     .collapse.navbar-collapse#main-nav-toggle
       %ul.nav.navbar-nav
-        %li= link_to "Home", root_path, class: "navbar-link"
-        %li= link_to "Projects", projects_path, class: "navbar-link"
+        %li= link_to "Browse Projects", projects_path, class: "navbar-link"
 
 #login-signup-button-container
   - unless logged_in?
