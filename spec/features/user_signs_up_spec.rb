@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature "User signs up" do
   scenario "user successfully signs up for an account", js: true do
+    sample_user = Fabricate(:user, username: "tsufurukawa")
+    Fabricate(:project, title: "PortoShare", user: sample_user)
     visit root_path
     click_button("Sign up")
     fill_in "Name", with: "Test User"
