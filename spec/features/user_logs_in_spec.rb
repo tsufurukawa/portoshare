@@ -3,6 +3,8 @@ require 'rails_helper'
 feature "User logs in" do
   scenario "user successfully logs in", js: true do
     Fabricate(:user, email: "test@example.com", password: "password")
+    sample_user = Fabricate(:user, username: "tsufurukawa")
+    Fabricate(:project, title: "PortoShare", user: sample_user)
     visit root_path
     click_button("Log in")
     fill_in "Email", with: "test@example.com"
