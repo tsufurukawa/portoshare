@@ -24,6 +24,7 @@ gem 'pygments.rb'
 gem 'kaminari'
 gem 'pg_search'
 gem 'unicorn'
+gem 'sentry-raven'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.3'
