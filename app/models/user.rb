@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessor :updating_password
 
-  has_many :projects, -> { order(created_at: :desc) }
+  has_many :projects, -> { order(updated_at: :desc) }
   has_many :authorizations
   has_secure_password validations: false
 
