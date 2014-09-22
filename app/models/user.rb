@@ -9,8 +9,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6 }, if: :should_validate_password?
   validates :username, presence: true, uniqueness: true, length: { maximum: 20 }
-  validates :bio, length: { maximum: 160,
-    too_long: "%{count} characters is the maximum allowed" }
+  validates :bio, length: { maximum: 160, too_long: "%{count} characters is the maximum allowed" }
 
   mount_uploader :avatar, AvatarUploader
 

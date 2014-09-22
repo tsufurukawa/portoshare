@@ -1,1 +1,5 @@
-$("#project_<%= @project.id %>_votes").find(".fa-thumbs-o-up").text(" <%= @project.reload.votes_count %>");
+<% if @vote.valid? %>
+  $("#project_<%= @project.id %>_votes").find(".fa-thumbs-o-up").text(" <%= @project.reload.votes_count %>");
+<% else %>
+  alert("You've already voted on that project.");
+<% end %>
